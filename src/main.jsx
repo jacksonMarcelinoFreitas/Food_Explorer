@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom/client';
 
 import { Home } from './pages/Home';
 import { SignIn } from './pages/SignIn';
+import { SignUp } from './pages/SignUp';
 import { MobileContainer } from './components/MobileContainer';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -14,7 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <ThemeProvider theme={theme}>
       <GlobalStyles/>
         <MobileContainer>
-          <SignIn/>
+          <SignUp/>
         </MobileContainer>
     </ThemeProvider>
   </React.StrictMode>,
