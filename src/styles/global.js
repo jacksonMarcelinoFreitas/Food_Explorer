@@ -8,6 +8,11 @@ export default createGlobalStyle`
   }
 
   body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
     background-color: ${({theme}) => theme.COLORS.DARK_400};
     color: ${({theme}) => theme.COLORS.LIGHT_100};
     -webkit-font-smoothing: antialiased;
