@@ -1,9 +1,9 @@
 import { Container } from './style';
 import hexagon from '../../assets/hexagon.png';
 
-export function Brand(){
+export function Brand({...rest}){
   return(
-    <Container>
+    <Container {...rest}>
       <img src={ hexagon }/>
       <p>food explorer</p>
     </Container>
