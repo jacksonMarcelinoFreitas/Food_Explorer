@@ -16,7 +16,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <ThemeProvider theme={theme}>
       <GlobalStyles/>
       <MobileContainer>
-        <Menu/>
+        <Home/>
+        {/* <SignUp /> */}
+        {/* <SignIn /> */}
       </MobileContainer>
     </ThemeProvider>
   </React.StrictMode>,
