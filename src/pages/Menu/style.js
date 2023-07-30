@@ -1,12 +1,22 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  display: grid;
+  grid-template-rows: 114px auto 76px;
+  grid-template-areas:
+  'header'
+  'menu'
+  'footer';
+
   width: 100%;
   height: 100vh;
+  /* overflow: hidden; */
 
   header{
     display: flex;
     justify-content: left;
+
+    grid-area: header;
 
     background: ${({theme}) => theme.COLORS.DARK_700};
     width: 100%;
@@ -20,6 +30,8 @@ export const Container = styled.div`
   }
 
   .wrapper-menu{
+    grid-area: menu;
+
     width: 100%;
     padding: 28px 36px 14px 28px
   }

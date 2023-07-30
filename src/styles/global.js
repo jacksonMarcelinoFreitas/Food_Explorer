@@ -7,13 +7,16 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
+  html, body{
+    width: 100vw;
+    height: 100vh;
+  }
+
+
   body{
     display: flex;
     align-items: center;
     justify-content: center;
-
-    width: 100vw;
-    height: 100vh;
 
     background-color: ${({theme}) => theme.COLORS.LIGHT_700 };
     color: ${({theme}) => theme.COLORS.LIGHT_100};
