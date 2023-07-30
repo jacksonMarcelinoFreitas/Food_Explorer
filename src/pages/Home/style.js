@@ -1,8 +1,12 @@
-import { styled } from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
-  height: 100%;
-  background: ${({theme})=> theme.COLORS.DARK_400};
-  color: white;
+  height: 100vh;
+
+  .logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `

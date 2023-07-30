@@ -16,6 +16,7 @@ export const Container = styled.div`
     font-family: 'Roboto', sans-serif;
     font-size: 36px;
     font-weight: 700;
+    white-space: nowrap;
   }
 
 `

@@ -4,9 +4,10 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: left;
-  gap: 14px;
+  /* gap: 14px; */
 
   width: 100%;
+  padding-left: 14px;
   border-radius: 8px;
 
   background-color: ${({theme}) => theme.COLORS.DARK_900};

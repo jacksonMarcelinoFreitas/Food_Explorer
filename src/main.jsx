@@ -8,15 +8,14 @@ import ReactDOM from 'react-dom/client';
 import { Home } from './pages/Home';
 import { SignIn } from './pages/SignIn';
 import { SignUp } from './pages/SignUp';
-import { MobileContainer } from './components/MobileContainer';
+import { Menu } from './pages/Menu';
+// import { MobileContainer } from './components/MobileContainer';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyles/>
-        <MobileContainer>
-          <SignUp/>
-        </MobileContainer>
+        <Menu/>
     </ThemeProvider>
   </React.StrictMode>,
 )
