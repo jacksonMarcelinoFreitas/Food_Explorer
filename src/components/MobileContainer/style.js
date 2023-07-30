@@ -1,14 +1,16 @@
-// import { styled } from "styled-components";
-// import { device } from "../../screensizes/devices";
+import { styled } from "styled-components";
+import { device } from "../../screensizes/devices";
 
-// export const Container = styled.div`
-//   /* width: 425px; */
-//   height: 100vh;
-//   padding: 56px;
+export const Container = styled.div`
+  width: 425px;
+  height: 100%;
 
-//   background: black;
+  /* padding: 56px; */
 
-// /* @media ${device.desktopMiddle}{
-//   background: coral;
-// } */
-// `
+  background: black;
+
+
+/* @media ${device.desktopMiddle}{
+  background: coral;
+} */
+`

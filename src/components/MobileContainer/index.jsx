@@ -1,7 +1,7 @@
-// import { Container } from "./style";
+import { Container } from "./style";
 
-// export function MobileContainer({children}){
-//   return(
-//     <Container>{children}</Container>
-//   )
-// }
+export function MobileContainer({children}){
+  return(
+    <Container>{children}</Container>
+  )
+}

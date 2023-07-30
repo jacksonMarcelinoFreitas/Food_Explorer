@@ -8,7 +8,7 @@ export function Menu(){
         <Container>
             <header>
                 <ButtonCloseMenu className='buttonCloseMenu'>
-                    <FiX size={18}/>
+                    <FiX size={22}/>
                     <span>Menu</span>
                 </ButtonCloseMenu>
             </header>

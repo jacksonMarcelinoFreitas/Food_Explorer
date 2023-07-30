@@ -11,9 +11,11 @@ export default createGlobalStyle`
     display: flex;
     align-items: center;
     justify-content: center;
+
     width: 100vw;
     height: 100vh;
-    background-color: ${({theme}) => theme.COLORS.DARK_400};
+
+    background-color: ${({theme}) => theme.COLORS.LIGHT_700 };
     color: ${({theme}) => theme.COLORS.LIGHT_100};
     -webkit-font-smoothing: antialiased;
   }
