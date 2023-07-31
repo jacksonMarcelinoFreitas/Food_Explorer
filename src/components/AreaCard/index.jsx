@@ -4,7 +4,9 @@ export function AreaCard({title, children, ...rest}){
   return(
     <Container {...rest}>
       <p className='title-area'>{title}</p>
-      {children}
+      <div className='area-cards'>
+        {children}
+      </div>
     </Container>
   )
 }

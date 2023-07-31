@@ -5,6 +5,8 @@ export const Container = styled.div`
   width: 428px;
   height: 100%;
 
+  overflow-y: auto;
+
   /* padding: 56px; */
 
   background: black;

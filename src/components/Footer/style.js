@@ -17,8 +17,10 @@ export const Container = styled.footer`
   font-family: 'Poppins', sans-serif;
   font-weight: 100;
 
-  position: static;
+  /* position: static; */
   position: sticky;
+
+  margin-top: 24px;
 
   .brand{
     width: fit-content;
