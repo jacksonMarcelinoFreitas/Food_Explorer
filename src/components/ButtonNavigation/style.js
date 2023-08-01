@@ -1,11 +1,6 @@
 import { styled } from "styled-components";
 
 export const Container = styled.button`
-  font-family: 'Poppins', sans-serif;
-  font-size: 24px;
-  font-weight: 100;
-  text-align: left;
-
   width: 100%;
   padding: 10px;
 
@@ -16,13 +11,19 @@ export const Container = styled.button`
 
   display: block;
 
-  > .icon{
+  > .icon, p{
     display: flex;
     align-items: center;
   }
 
   > p {
-    display: inline;
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 140%; /* 33.6px */
+
+    text-align: left;
   }
 
 

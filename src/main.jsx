@@ -19,6 +19,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <MobileContainer>
         <Dish/>
         {/* <Home/> */}
+        {/* <Menu/> */}
         {/* <SignUp /> */}
         {/* <SignIn /> */}
       </MobileContainer>
