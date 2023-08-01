@@ -9,6 +9,7 @@ import { Home } from './pages/Home';
 import { SignIn } from './pages/SignIn';
 import { SignUp } from './pages/SignUp';
 import { Menu } from './pages/Menu';
+import { Dish } from './pages/Dish';
 import { MobileContainer } from './components/MobileContainer';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -16,7 +17,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <ThemeProvider theme={theme}>
       <GlobalStyles/>
       <MobileContainer>
-        <Home/>
+        <Dish/>
+        {/* <Home/> */}
         {/* <SignUp /> */}
         {/* <SignIn /> */}
       </MobileContainer>

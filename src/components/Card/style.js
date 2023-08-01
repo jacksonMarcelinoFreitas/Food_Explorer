@@ -45,27 +45,29 @@ export const Container = styled.div`
     }
   }
 
-  .dish-select{
-    button{
-      height: 32px;
-      padding: 0 24px;
-
-      font-size: 14px;
-      font-weight: 500;
-    }
+  .dish-select-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
   }
 
-  .dish-unit{
+  .dish-insert{
+    height: 32px;
+    padding: 0 24px;
+
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .dish-stepper{
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 14px;
 
     margin-bottom: 16px;
-
-
-
-
   }
 
 `

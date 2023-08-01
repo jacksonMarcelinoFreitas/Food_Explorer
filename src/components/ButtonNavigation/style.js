@@ -15,4 +15,15 @@ export const Container = styled.button`
   border-bottom: 1.5px solid ${({theme}) => theme.COLORS.DARK_1000};
 
   display: block;
+
+  > .icon{
+    display: flex;
+    align-items: center;
+  }
+
+  > p {
+    display: inline;
+  }
+
+
 `

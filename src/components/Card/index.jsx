@@ -1,9 +1,10 @@
 import { Container } from './style';
 import { FiMinus, FiPlus } from 'react-icons/fi';
 import { Button } from '../../components/Button';
+import { Stepper } from '../../components/Stepper';
 
 export function Card({icon: Icon, image, name, price,  ...rest}){
-  let countOrder = 1;
+  // let countOrder = 1;
   return(
     <Container>
       {
@@ -19,13 +20,9 @@ export function Card({icon: Icon, image, name, price,  ...rest}){
 
       <span className='dish-price'>{price}</span>
 
-      <div className="dish-select">
-        <div className='dish-unit'>
-          <FiMinus size={24}/>
-            <span>{countOrder}</span>
-          <FiPlus size={24}/>
-        </div>
-        <Button title="Adicionar"/>
+      <div className="dish-select-box">
+        <Stepper className="dish_stepper"/>
+        <Button className="dish-insert" title="Adicionar"/>
       </div>
 
     </Container>
