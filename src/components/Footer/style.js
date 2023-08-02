@@ -27,10 +27,13 @@ export const Container = styled.footer`
 
     > img{
       width: 22px;
+      filter: hue-rotate(20deg);
+      filter: saturate(10%);
     }
 
     > p {
       font-size: 16px;
+      color: ${({theme}) => theme.COLORS.LIGHT_700};
     }
   }
 `

@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 export const Container = styled.header`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
 
   width: 100%;
   height: 114px;
@@ -11,6 +11,17 @@ export const Container = styled.header`
   padding: 56px 28px 24px 28px;
 
   background-color: ${({theme}) => theme.COLORS.DARK_700};
+
+
+  > .brand{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    > span {
+      color: ${({theme}) => theme.COLORS.CAKE_200};
+    }
+  }
 
   .iconMenu{
     width: 24px;

@@ -10,6 +10,9 @@ import { SignIn } from './pages/SignIn';
 import { SignUp } from './pages/SignUp';
 import { Menu } from './pages/Menu';
 import { Dish } from './pages/Dish';
+import { AdminDish } from './pages/AdminDish';
+import { AdminHome } from './pages/AdminHome';
+import { AdminMenu } from './pages/AdminMenu';
 import { MobileContainer } from './components/MobileContainer';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -17,11 +20,14 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <ThemeProvider theme={theme}>
       <GlobalStyles/>
       <MobileContainer>
-        <Dish/>
+        {/* <Dish/> */}
         {/* <Home/> */}
-        {/* <Menu/> */}
+        <Menu/>
         {/* <SignUp /> */}
         {/* <SignIn /> */}
+        {/* <AdminDish /> */}
+        {/* <AdminHome /> */}
+        {/* <AdminMenu /> */}
       </MobileContainer>
     </ThemeProvider>
   </React.StrictMode>,

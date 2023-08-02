@@ -3,10 +3,10 @@ import { FiMinus, FiPlus } from 'react-icons/fi';
 import { Button } from '../../components/Button';
 import { Stepper } from '../../components/Stepper';
 
-export function Card({icon: Icon, image, name, price,  ...rest}){
+export function Card({icon: Icon, image, name, price, isAdmin, ...rest}){
   // let countOrder = 1;
   return(
-    <Container>
+    <Container {...rest}>
       {
         Icon&&
         <Icon className="dish-like" size={24}/>
@@ -20,10 +20,13 @@ export function Card({icon: Icon, image, name, price,  ...rest}){
 
       <span className='dish-price'>{price}</span>
 
-      <div className="dish-select-box">
-        <Stepper className="dish_stepper"/>
-        <Button className="dish-insert" title="Adicionar"/>
-      </div>
+
+      { !isAdmin&&
+        <div className="dish-select-box">
+          <Stepper className="dish_stepper"/>
+          <Button className="dish-insert" title="Adicionar"/>
+        </div>
+      }
 
     </Container>
   )

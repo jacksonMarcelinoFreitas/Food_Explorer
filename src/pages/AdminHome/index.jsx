@@ -6,13 +6,13 @@ import bannerImage from '../../assets/bannerImage.png';
 import { AreaCard } from '../../components/AreaCard';
 import { Card } from '../../components/Card';
 import { Footer } from '../../components/Footer';
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import { PiPencilSimple } from 'react-icons/pi';
 import imageDish  from '../../assets/image-dish1.png';
 
-export function Home(){
+export function AdminHome(){
     return(
         <Container>
-            <Header/>
+            <Header isAdmin={true}/>
 
             <div className="banner-container">
                 <div className='banner'>
@@ -29,48 +29,61 @@ export function Home(){
                 className="area-card">
 
                 <Card
-                    icon={AiOutlineHeart}
+                    icon={PiPencilSimple}
                     image={imageDish}
                     name="Salada Ravanello"
                     price="R$ 49,97"
+                    isAdmin={true}
                 />
 
                 <Card
-                    icon={AiOutlineHeart}
+                    icon={PiPencilSimple}
                     image={imageDish}
                     name="Salada Ravanello"
                     price="R$ 49,97"
+                    isAdmin={true}
+
                 />
 
                 <Card
-                    icon={AiOutlineHeart}
+                    icon={PiPencilSimple}
                     image={imageDish}
                     name="Salada Ravanello"
                     price="R$ 49,97"
+                    isAdmin={true}
+
                 />
                 <Card
-                    icon={AiOutlineHeart}
+                    icon={PiPencilSimple}
                     image={imageDish}
                     name="Salada Ravanello"
                     price="R$ 49,97"
+                    isAdmin={true}
+
                 />
                 <Card
-                    icon={AiOutlineHeart}
+                    icon={PiPencilSimple}
                     image={imageDish}
                     name="Salada Ravanello"
                     price="R$ 49,97"
+                    isAdmin={true}
+
                 />
                 <Card
-                    icon={AiOutlineHeart}
+                    icon={PiPencilSimple}
                     image={imageDish}
                     name="Salada Ravanello"
                     price="R$ 49,97"
+                    isAdmin={true}
+
                 />
                 <Card
-                    icon={AiOutlineHeart}
+                    icon={PiPencilSimple}
                     image={imageDish}
                     name="Salada Ravanello"
                     price="R$ 49,97"
+                    isAdmin={true}
+
                 />
             </AreaCard>
             <AreaCard
@@ -78,17 +91,21 @@ export function Home(){
                 className="area-card">
 
                 <Card
-                    icon={AiOutlineHeart}
+                    icon={PiPencilSimple}
                     image={imageDish}
                     name="Salada Ravanello"
                     price="R$ 49,97"
+                    isAdmin={true}
+
                 />
 
                 <Card
-                    icon={AiOutlineHeart}
+                    icon={PiPencilSimple}
                     image={imageDish}
                     name="Salada Ravanello"
                     price="R$ 49,97"
+                    isAdmin={true}
+
                 />
             </AreaCard>
 

@@ -6,7 +6,7 @@ export const Container = styled.div`
   align-items: center;
   gap: 10px;
 
-  width: 278px;
+  /* width: 278px; */
 
   img{
     width: 43px;

@@ -1,7 +1,6 @@
 import { ButtonNavigation } from '../../components/ButtonNavigation';
 import { Ingredients }  from '../../components/Ingredients';
 import imageDish  from '../../assets/image-dish1.png';
-import { Stepper } from "../../components/Stepper";
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { Button } from '../../components/Button';
@@ -11,7 +10,7 @@ import { PiReceipt } from "react-icons/pi";
 import { Container } from './style';
 
 
-export function Dish(){
+export function AdminDish(){
   let nameDish = 'Salada Ravanello';
   let descriptionDish = 'Rabanetes, folhas verdes e molho agridoce salpicados com gergelim.';
   let countOrder = 1;
@@ -21,7 +20,7 @@ export function Dish(){
   return(
     <Container>
 
-      <Header/>
+      <Header isAdmin={true}/>
 
         <div className="dish-box">
 
@@ -44,8 +43,7 @@ export function Dish(){
               </div>
 
               <div className="dish-select-box">
-                <Stepper countOrder={countOrder} className="dish_stepper"/>
-                <Button className="dish-insert" title={'pedir ' + '\u2022 R$' + price + ',00'} icon={PiReceipt}/>
+                <Button className="dish-insert" title='Editar prato' />
               </div>
 
             </div>
