@@ -1,19 +1,22 @@
+import { MobileContainer } from './components/MobileContainer';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyles from './styles/global';
 import theme from './styles/theme';
 
-import React from 'react';
 import ReactDOM from 'react-dom/client';
+import React from 'react';
 
-import { Home } from './pages/Home';
-import { SignIn } from './pages/SignIn';
-import { SignUp } from './pages/SignUp';
-import { Menu } from './pages/Menu';
-import { Dish } from './pages/Dish';
+// import { AdminEditDish } from './pages/AdminEditDish';
+import { AdminEditDish } from './pages/AdminEditDish';
+import { AdminNewDish } from './pages/AdminNewDish';
 import { AdminDish } from './pages/AdminDish';
 import { AdminHome } from './pages/AdminHome';
 import { AdminMenu } from './pages/AdminMenu';
-import { MobileContainer } from './components/MobileContainer';
+import { SignIn } from './pages/SignIn';
+import { SignUp } from './pages/SignUp';
+import { Home } from './pages/Home';
+import { Menu } from './pages/Menu';
+import { Dish } from './pages/Dish';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -28,6 +31,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         {/* <AdminDish /> */}
         {/* <AdminHome /> */}
         {/* <AdminMenu /> */}
+        {/* <AdminNewDish /> */}
+        {/* <AdminEditDish /> */}
       </MobileContainer>
     </ThemeProvider>
   </React.StrictMode>,

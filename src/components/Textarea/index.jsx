@@ -1,9 +1,7 @@
 import { Container } from './style';
-
-export function Label({title, ...rest}){
+export function Textarea({...rest}){
   return(
     <Container {...rest}>
-      {title}
     </Container>
   )
 }

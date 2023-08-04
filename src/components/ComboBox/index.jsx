@@ -1,9 +1,9 @@
 import { Container } from './style';
 
-export function Label({title, ...rest}){
+export function ComboBox({children, ...rest}){
   return(
     <Container {...rest}>
-      {title}
+      {children}
     </Container>
   )
 }
