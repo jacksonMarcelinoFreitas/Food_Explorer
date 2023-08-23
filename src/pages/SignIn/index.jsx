@@ -1,4 +1,5 @@
 import { Container } from './style';
+import { useAuth } from '../../hooks/auth';
 import { Brand } from '../../components/Brand';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
@@ -7,6 +8,9 @@ import { Label } from '../../components/Label';
 // import { MobileContainer } from '../../components/MobileContainer';
 
 export function SignIn(){
+  const data = useAuth();
+  console.log("MEU CONTEXTO => ", data);
+
   return(
     <Container>
         <Brand
@@ -34,7 +38,7 @@ export function SignIn(){
           className="button"
         />
 
-        <ButtonText title={'Criar uma conta'} isActive={true} className="button"/>
+        <ButtonText title={'Criar uma conta'} className="button"/>
 
     </Container>
   )

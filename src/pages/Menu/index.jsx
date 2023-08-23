@@ -1,7 +1,7 @@
+import { ButtonNavigation} from '../../components/ButtonNavigation';
 import { Container, ButtonCloseMenu } from './style';
 import { Input } from '../../components/Input';
 import { FiX, FiSearch } from 'react-icons/fi';
-import { ButtonNavigation} from '../../components/ButtonNavigation';
 import { Footer} from '../../components/Footer';
 
 export function Menu(){

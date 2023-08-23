@@ -1,10 +1,10 @@
-import { Container } from './style';
+import iconOrder from '../../assets/iconOrder.svg';
 import { Brand } from '../../components/Brand';
 import { Order } from '../../components/Order';
 import { HiMiniBars3 } from 'react-icons/hi2';
-import iconOrder from '../../assets/iconOrder.svg';
+import { Container } from './style';
 
-export function Header({isAdmin, ...rest}){
+export function Header({isAdmin, valueOrder, ...rest}){
   const icon = iconOrder;
 
   return(
@@ -25,7 +25,7 @@ export function Header({isAdmin, ...rest}){
       {!isAdmin&&
         <div className='iconOrder'>
           <img src={ icon }/>
-          <Order/>
+          <Order valueOrder={valueOrder}/>
         </div>
       }
 

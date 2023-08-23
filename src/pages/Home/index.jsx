@@ -1,18 +1,16 @@
-import { Container } from './style';
-import { Header } from '../../components/Header';
-import { Input } from '../../components/Input';
-import { FiSearch } from 'react-icons/fi'
 import bannerImage from '../../assets/bannerImage.png';
-import { AreaCard } from '../../components/AreaCard';
-import { Card } from '../../components/Card';
-import { Footer } from '../../components/Footer';
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import imageDish  from '../../assets/image-dish1.png';
+import { AreaCard } from '../../components/AreaCard';
+import { Header } from '../../components/Header';
+import { Footer } from '../../components/Footer';
+import { Card } from '../../components/Card';
+import { Container } from './style';
 
 export function Home(){
+    let data = false;
     return(
         <Container>
-            <Header/>
+            <Header valueOrder={25}/>
 
             <div className="banner-container">
                 <div className='banner'>
@@ -29,63 +27,33 @@ export function Home(){
                 className="area-card">
 
                 <Card
-                    icon={AiOutlineHeart}
+                    icon={data}
                     image={imageDish}
                     name="Salada Ravanello"
                     price="R$ 49,97"
                 />
 
                 <Card
-                    icon={AiOutlineHeart}
+                    icon={data}
                     image={imageDish}
                     name="Salada Ravanello"
                     price="R$ 49,97"
                 />
 
-                <Card
-                    icon={AiOutlineHeart}
-                    image={imageDish}
-                    name="Salada Ravanello"
-                    price="R$ 49,97"
-                />
-                <Card
-                    icon={AiOutlineHeart}
-                    image={imageDish}
-                    name="Salada Ravanello"
-                    price="R$ 49,97"
-                />
-                <Card
-                    icon={AiOutlineHeart}
-                    image={imageDish}
-                    name="Salada Ravanello"
-                    price="R$ 49,97"
-                />
-                <Card
-                    icon={AiOutlineHeart}
-                    image={imageDish}
-                    name="Salada Ravanello"
-                    price="R$ 49,97"
-                />
-                <Card
-                    icon={AiOutlineHeart}
-                    image={imageDish}
-                    name="Salada Ravanello"
-                    price="R$ 49,97"
-                />
             </AreaCard>
             <AreaCard
                 title="Pratos principais"
                 className="area-card">
 
                 <Card
-                    icon={AiOutlineHeart}
+                    icon={data}
                     image={imageDish}
                     name="Salada Ravanello"
                     price="R$ 49,97"
                 />
 
                 <Card
-                    icon={AiOutlineHeart}
+                    icon={data}
                     image={imageDish}
                     name="Salada Ravanello"
                     price="R$ 49,97"

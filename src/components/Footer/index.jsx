@@ -1,5 +1,6 @@
-import { Container } from './style';
 import { Brand } from '../../components/Brand';
+import { Container } from './style';
+
 export function Footer(){
   return (
     <Container>

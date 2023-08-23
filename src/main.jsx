@@ -5,34 +5,17 @@ import theme from './styles/theme';
 
 import ReactDOM from 'react-dom/client';
 import React from 'react';
-
-// import { AdminEditDish } from './pages/AdminEditDish';
-import { AdminEditDish } from './pages/AdminEditDish';
-import { AdminNewDish } from './pages/AdminNewDish';
-import { AdminDish } from './pages/AdminDish';
-import { AdminHome } from './pages/AdminHome';
-import { AdminMenu } from './pages/AdminMenu';
-import { SignIn } from './pages/SignIn';
-import { SignUp } from './pages/SignUp';
-import { Home } from './pages/Home';
-import { Menu } from './pages/Menu';
-import { Dish } from './pages/Dish';
+import { AuthProvider } from './hooks/auth';
+import { Routes } from './Routes';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyles/>
       <MobileContainer>
-        {/* <Dish/> */}
-        {/* <Home/> */}
-        <Menu/>
-        {/* <SignUp /> */}
-        {/* <SignIn /> */}
-        {/* <AdminDish /> */}
-        {/* <AdminHome /> */}
-        {/* <AdminMenu /> */}
-        {/* <AdminNewDish /> */}
-        {/* <AdminEditDish /> */}
+        <AuthProvider>
+          <Routes />
+        </AuthProvider>
       </MobileContainer>
     </ThemeProvider>
   </React.StrictMode>,

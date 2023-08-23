@@ -1,82 +1,58 @@
-import { FiMail, FiLock, FiUser } from 'react-icons/fi';
-import { Container, Form, Background } from './styles';
-import { Link, useNavigate } from 'react-router-dom';
+import { ButtonNavigation } from '../../components/ButtonNavigation';
+import { Ingredients }  from '../../components/Ingredients';
+import imageDish  from '../../assets/image-dish1.png';
+import { Stepper } from "../../components/Stepper";
+import { Header } from '../../components/Header';
+import { Footer } from '../../components/Footer';
 import { Button } from '../../components/Button';
-import { Input } from '../../components/Input';
-import { api } from '../../service/api';
-import { useState } from 'react';
+import { LuChevronLeft } from "react-icons/lu";
+import { Tag } from '../../components/Tag';
+import { PiReceipt } from "react-icons/pi";
+import { Container } from './style';
 
-export function SignUp(){
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
 
-    const navigate = useNavigate();
+export function ViewDish(){
+  let nameDish = 'Salada Ravanello';
+  let descriptionDish = 'Rabanetes, folhas verdes e molho agridoce salpicados com gergelim.';
+  let countOrder = 1;
+  let price = 25;
 
-    function handleSignUp(){
-        if(!name || !email || !password){
-            return alert("Preencha todos os campos!");
-        }
 
-        api.post('/users', {name, email, password})
-        //executa se tudo der certo
-        .then(() => {
-            alert('Usuário cadastrado com sucesso!');
-            navigate('/')
-        })
-        //executa se algo der errado
-        .catch(error => {
-            if(error.response){
-                alert(error.response.data.message);
-            }else{
-                alert('Erro ao cadastrar usuário!');
-            }
-        });
-    }
+  return(
+    <Container>
 
-    return(
-        <Container>
-            <Background />
-            <Form>
-                <h1>Rocket Notes</h1>
-                <p>Aplciação para salvar e gerenciar seus links.</p>
+      <Header/>
 
-                <h2>Crie sua conta</h2>
+        <div className="dish-box">
 
-                <Input
-                    placeholder="Nome"
-                    type="text"
-                    icon={FiUser}
-                    onChange={event => setName(event.target.value)} //evento de mudanças
-                />
-                <Input
-                    placeholder="E-mail"
-                    type="text"
-                    icon={FiMail}
-                    onChange={event => setEmail(event.target.value)}
-                />
-                <Input
-                    placeholder="Senha"
-                    type="password"
-                    icon={FiLock}
-                    onChange={event => setPassword(event.target.value)}
-                />
+          <ButtonNavigation title="Voltar" icon={LuChevronLeft} className="buttonNavigation"/>
 
-                <Button
-                  title="Cadastrar" onClick={handleSignUp}
-                />
+            <img src={imageDish}></img>
 
-                <Link to="/">
-                    Voltar para o login
-                </Link>
-            </Form>
-        </Container>
-    );
+            <div className="box-ingredients">
+              <div className="box-intern-ingredients">
+                <h1>{nameDish}</h1>
+                <p>{descriptionDish}</p>
+                <Ingredients>
+                  <Tag title="alface"/>
+                  <Tag title="cebola"/>
+                  <Tag title="pão naan"/>
+                  <Tag title="pepino"/>
+                  <Tag title="rabanete"/>
+                  <Tag title="tomate"/>
+                </Ingredients>
+              </div>
+
+              <div className="dish-select-box">
+                <Stepper countOrder={countOrder} className="dish_stepper"/>
+                <Button className="dish-insert" title={'pedir ' + '\u2022 R$' + price + ',00'} icon={PiReceipt}/>
+              </div>
+
+            </div>
+        </div>
+
+      <Footer/>
+
+    </Container>
+  )
 }
-
-/*
-    useState(""); //hook para criar estados
-    vai entregar o valor atual
-    passa para o array passa o que será alterado e a funçao que vai alterar;
-
-*/

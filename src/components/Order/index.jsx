@@ -1,10 +1,10 @@
 import { Container } from './style';
 
-export function Order(){
-  let number = 0
+export function Order({valueOrder, ...rest}){
+  // let number = 0
   return(
-    <Container>
-      {number}
+    <Container {...rest}>
+      {valueOrder}
     </Container>
   )
 }

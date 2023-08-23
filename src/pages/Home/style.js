@@ -4,12 +4,13 @@ export const Container = styled.div`
   width: 100%;
   height: 100vh;
 
-  /* overflow-y: scroll; */
-
+  ;
   .banner-container{
     display: flex;
     align-items: center;
     justify-content: center;
+
+    grid-area: banner;
 
     width: 100%;
     overflow: hidden;

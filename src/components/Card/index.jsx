@@ -1,7 +1,8 @@
 import { Container } from './style';
-import { FiMinus, FiPlus } from 'react-icons/fi';
 import { Button } from '../../components/Button';
 import { Stepper } from '../../components/Stepper';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+
 
 export function Card({icon: Icon, image, name, price, isAdmin, ...rest}){
   // let countOrder = 1;
@@ -9,7 +10,9 @@ export function Card({icon: Icon, image, name, price, isAdmin, ...rest}){
     <Container {...rest}>
       {
         Icon&&
-        <Icon className="dish-like" size={24}/>
+        Icon ?
+        <AiFillHeart className="dish-like" size={24}/> :
+        <AiOutlineHeart className="dish-like" size={24}/>
       }
 
       <div className='image-dish'>

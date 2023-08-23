@@ -4,6 +4,8 @@ export const Container = styled.div`
   padding: 0 0 0 24px;
   margin-bottom: 24px;
 
+  grid-area: areaCard;
+
   > .title-area{
     font-family: 'Poppins', sans-serif;
     font-size: 18px;
