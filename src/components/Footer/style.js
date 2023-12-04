@@ -10,6 +10,7 @@ export const Container = styled.footer`
 
   width: 100%;
   height: 76px;
+  padding: 0 28px;
 
   background-color: ${({theme}) => theme.COLORS.DARK_600};
 

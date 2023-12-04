@@ -5,8 +5,8 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
 
-  width: 20px;
-  width: 20px;
+  width: 24px;
+  height: 24px;
 
   border-radius: 50%;
 
@@ -14,5 +14,5 @@ export const Container = styled.div`
   top: -10px;
   right: -10px;
 
-  background-color: ${({theme}) => theme.COLORS.TOMATO_100};
+  background-color: ${({theme}) => theme.COLORS.TOMATO_200};
 `;

@@ -1,18 +1,18 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Container } from './style';
-import { api } from '../../services/api';
-import { Brand } from '../../components/Brand';
-import { Input } from '../../components/Input';
-import { Button } from '../../components/Button';
+import { WrapperInput } from '../../components/WrapperInput';
 import { ButtonText } from '../../components/ButtonText';
+import { Link, useNavigate } from 'react-router-dom';
+import { Button } from '../../components/Button';
 import { Label } from '../../components/Label';
-// import { MobileContainer } from '../../components/MobileContainer';
+import { Input } from '../../components/Input';
+import { Brand } from '../../components/Brand';
+import { api } from '../../services/api';
+import { Container } from './style';
+import { useState } from 'react';
 
 export function SignUp(){
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
 
   const navigate = useNavigate();
 
@@ -38,44 +38,55 @@ export function SignUp(){
 
   return(
     <Container>
-        <Brand
-          className="brand"
-        />
+        <div class="wrapper">
 
-        <div className="input-wrapper">
-          <Label title='Seu nome'/>
-          <Input
-            placeholder='Exemplo: Maria da Silva'
-            type="text"
-            onChange={e => setName(e.target.value)}
+          <Brand
+            className="brand"
           />
+
+          <div class="box-wrapper">
+            <h1 className='hidden'>Crie sua conta</h1>
+            <WrapperInput>
+              <Label title='Seu nome'/>
+              <Input
+                type="text"
+                placeholder='Exemplo: Maria da Silva'
+                onChange={e => setName(e.target.value)}
+              />
+            </WrapperInput>
+
+            <WrapperInput>
+              <Label title='Email'/>
+              <Input
+                type="email"
+                placeholder='Exemplo: exemplo@exemplo.com.br'
+                onChange={e => setEmail(e.target.value)}
+              />
+            </WrapperInput>
+
+            <WrapperInput>
+              <Label title='Password'/>
+              <Input
+                type="password"
+                placeholder='No mínimo 6 caracteres'
+                onChange={e => setPassword(e.target.value)}
+              />
+            </WrapperInput>
+
+            <Button
+              onClick={handleSignUp}
+              title={'Criar conta'}
+              className="button"
+            />
+
+            <ButtonText
+              onClick={() => {navigate('/')}}
+              title={'Já tenho uma conta'}
+              className="button"
+            />
+
+          </div>
         </div>
-
-        <div className="input-wrapper">
-          <Label title='Email'/>
-          <Input
-            placeholder='Exemplo: exemplo@exemplo.com.br'
-            type="email"
-            onChange={e => setEmail(e.target.value)}
-          />
-        </div>
-
-        <div className="input-wrapper">
-          <Label title='Password'/>
-          <Input
-            placeholder='No mínimo 6 caracteres'
-            type="password"
-            onChange={e => setPassword(e.target.value)}
-          />
-        </div>
-
-        <Button
-          onClick={handleSignUp}
-          title={'Criar conta'}
-          className="button"
-        />
-
-        <ButtonText title={'Já tenho uma conta'} className="button"/>
 
     </Container>
   )

@@ -1,36 +1,51 @@
-import { Container } from './style';
-import { Button } from '../../components/Button';
+import { PiHeartStraightFill, PiPencilSimple } from 'react-icons/pi';
 import { Stepper } from '../../components/Stepper';
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import { Button } from '../../components/Button';
+import { FiHeart } from 'react-icons/fi';
+import { Container } from './style';
 
 
-export function Card({icon: Icon, image, name, price, isAdmin, ...rest}){
-  // let countOrder = 1;
-  return(
-    <Container {...rest}>
-      {
-        Icon&&
-        Icon ?
-        <AiFillHeart className="dish-like" size={24}/> :
-        <AiOutlineHeart className="dish-like" size={24}/>
-      }
+export function Card({ icon: Icon, image, name, price, isAdmin, description, ...rest }) {
+  return (
+    <Container $isAdmin={isAdmin} {...rest}>
+      {isAdmin ? (
+        <>
+          <PiPencilSimple className="dish-like" size={24} />
 
-      <div className='image-dish'>
-        <img src={image} alt="Dish"></img>
-      </div>
+          <div className='image-dish'>
+            <img src={image} alt="Dish" />
+          </div>
 
-      <p className='dish-name'>{name} &#62;</p>
+          <p className='dish-name'>{name} &#62;</p>
 
-      <span className='dish-price'>{price}</span>
+          <span className='dish-description hidden'>{description}</span>
+          <span className='dish-price'>{price}</span>
+        </>
+      ) : (
+        <>
+          {Icon ? (
+            <PiHeartStraightFill className="dish-like" size={22} />
+          ) : (
+            <FiHeart className="dish-like" size={22} />
+          )}
 
+          <div className='image-dish'>
+            <img src={image} alt="Dish" />
+          </div>
 
-      { !isAdmin&&
-        <div className="dish-select-box">
-          <Stepper className="dish_stepper"/>
-          <Button className="dish-insert" title="Adicionar"/>
-        </div>
-      }
+          <p className='dish-name'>{name} &#62;</p>
 
+          <span className='dish-description hidden'>{description}</span>
+          <span className='dish-price'>{price}</span>
+
+          {!isAdmin && (
+            <div className="dish-select-box">
+              <Stepper className="dish_stepper" />
+              <Button className="dish-insert" title="Incluir" />
+            </div>
+          )}
+        </>
+      )}
     </Container>
-  )
+  );
 }

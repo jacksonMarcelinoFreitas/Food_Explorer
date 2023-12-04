@@ -16,37 +16,52 @@ export function ViewDish(){
   let descriptionDish = 'Rabanetes, folhas verdes e molho agridoce salpicados com gergelim.';
   let countOrder = 1;
   let price = 25;
+  const isAdmin = false;
 
 
   return(
     <Container>
 
-      <Header/>
+      <Header valueOrder={2} isAdmin={isAdmin}/>
 
-        <div className="dish-box">
+        <div className="wrapper">
 
           <ButtonNavigation title="Voltar" icon={LuChevronLeft} className="buttonNavigation"/>
 
-            <img src={imageDish}></img>
+            <div className="container-wrapper">
 
-            <div className="box-ingredients">
-              <div className="box-intern-ingredients">
-                <h1>{nameDish}</h1>
-                <p>{descriptionDish}</p>
-                <Ingredients>
-                  <Tag title="alface"/>
-                  <Tag title="cebola"/>
-                  <Tag title="pão naan"/>
-                  <Tag title="pepino"/>
-                  <Tag title="rabanete"/>
-                  <Tag title="tomate"/>
-                </Ingredients>
-              </div>
+              <img src={imageDish}></img>
 
-              <div className="dish-select-box">
-                <Stepper countOrder={countOrder} className="dish_stepper"/>
-                <Button className="dish-insert" title={'pedir ' + '\u2022 R$' + price + ',00'} icon={PiReceipt}/>
-              </div>
+              <div className="box-ingredients">
+
+                <div className="box-intern-ingredients">
+                  <h1>{nameDish}</h1>
+                  <p>{descriptionDish}</p>
+                  <Ingredients className="ingredients">
+                    <Tag title="alface"/>
+                    <Tag title="cebola"/>
+                    <Tag title="pão naan"/>
+                    <Tag title="pepino"/>
+                    <Tag title="rabanete"/>
+                    <Tag title="tomate"/>
+                  </Ingredients>
+                </div>
+
+                <div className="dish-select-box">
+                {isAdmin ?
+                  (
+                    <Button className="dish-insert" title={'Editar prato'}/>
+                  ) :
+                  (
+                    <>
+                      <Stepper countOrder={countOrder} className="dish_stepper"/>
+                      <Button className="dish-insert" title={'incluir ' + '\u2022 R$' + price + ',00'} icon={PiReceipt}/>
+                    </>
+                  )
+                }
+                </div>
+
+            </div>
 
             </div>
         </div>

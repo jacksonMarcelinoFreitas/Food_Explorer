@@ -4,12 +4,12 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 
   /* width: 278px; */
 
   img{
-    width: 43px;
+    width: 42px;
   }
 
   p{

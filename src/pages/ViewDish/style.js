@@ -1,19 +1,16 @@
 import styled from "styled-components";
+import { device } from "../../screensizes/devices";
 
 export const Container = styled.div`
   width: 100%;
   height: 100vh;
 
   display: grid;
-  grid-template-rows: 114px auto 76px;
+  grid-template-rows: 114px auto 77px;
   grid-template-areas:
   'header'
-  'dish'
+  'wrapper'
   'footer';
-
-  header{
-    grid-area: header;
-  }
 
   .buttonNavigation{
     display: flex;
@@ -27,24 +24,25 @@ export const Container = styled.div`
     border: none;
   }
 
-  .dish-box, .box-intern-ingredients, .box-ingredients{
+  .wrapper, .container-wrapper, .box-intern-ingredients, .box-ingredients{
     display: flex;
     align-items: center;
     flex-direction: column;
   }
 
-  .dish-box{
-    margin: 48px 56px;
+  .wrapper{
+    grid-area: wrapper;
+    width: 100%;
+    padding: 16px 32px 32px 32px;
+  }
 
-    grid-area: dish;
-    align-self: center;
-
+  .container-wrapper{
     gap: 16px;
 
     > img {
-      min-width: 264px;
+      /* width: fit-content; */
+      width: clamp(100px, 100%, 300px);
     }
-
   }
 
   .box-intern-ingredients{
@@ -80,7 +78,6 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     gap: 16px;
-
   }
 
   .dish-insert{
@@ -102,6 +99,54 @@ export const Container = styled.div`
   footer{
     grid-area: footer;
     margin: 0;
+  }
+
+  @media ${device.tablet} {
+
+    .container-wrapper{
+      gap: 48px;
+
+      > img {
+        width: clamp(200px, 100%, 400px);
+      }
+    }
+    .container-wrapper{
+      flex-direction: row;
+      justify-content: center;
+      height: 100%;
+    }
+
+    .box-ingredients{
+      width: 50%;
+    }
+
+    .box-intern-ingredients{
+      align-items: start;
+
+      > h1 {
+        font-size: clamp(28px, 3vw, 40px);
+      }
+
+      > p {
+        font-size: clamp(16px, 2vw, 24px);;
+        font-weight: 300;
+        text-align: left;
+      }
+    }
+
+    .ingredients{
+      justify-content: left;
+      display: flex;
+    }
+
+    .dish-select-box{
+      justify-content: left;
+
+      .dish-insert{
+        width: 200px;
+      }
+    }
+
   }
 
 `

@@ -8,19 +8,28 @@ export default createGlobalStyle`
   }
 
   html, body{
-    width: 100vw;
-    height: 100vh;
+    background-color: ${({theme}) => theme.COLORS.BLACK };
+
+    ::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    ::-webkit-scrollbar {
+      width: 12px;
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      border-radius: 12px;
+      background: ${({theme}) => theme.COLORS.CAKE_100};
+    }
   }
 
-
   body{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background-color: ${({theme}) => theme.COLORS.LIGHT_700 };
     color: ${({theme}) => theme.COLORS.LIGHT_100};
     -webkit-font-smoothing: antialiased;
+
+
   }
 
   body, button, input, textarea, a, p{

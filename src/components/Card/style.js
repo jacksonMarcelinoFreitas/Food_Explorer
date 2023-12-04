@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
+import { device } from "../../screensizes/devices";
 
 export const Container = styled.div`
-  min-width: 210px;
   height: 292px;
 
   padding: 24px;
@@ -16,10 +16,15 @@ export const Container = styled.div`
 
   background-color: ${({theme}) => theme.COLORS.DARK_900};
 
+  .hidden{
+    display: none;
+  }
+
   .dish-name{
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
     font-weight: 500;
+    text-align: center;
   }
 
   .dish-price{
@@ -30,7 +35,13 @@ export const Container = styled.div`
     color: ${({theme}) => theme.COLORS.CAKE_200};
   }
 
-  .dish-like{
+  .dish-description{
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  .dish-like, .edit-icon{
     position: absolute;
     /* color: red; */
     right: 16px;
@@ -68,6 +79,54 @@ export const Container = styled.div`
     gap: 14px;
 
     margin-bottom: 16px;
+  }
+
+  @media ${device.desktopSmall} {
+    height: 462px;
+    /* width: 304px; */
+
+    padding: 32px;
+
+    .hidden{
+      display: inherit;
+    }
+
+    .dish-name{
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .dish-price{
+      font-size: 32px;
+
+    }
+
+    .dish-description{
+      font-size: 14px;
+      font-weight: 400;
+
+      color: ${({theme}) => theme.COLORS.LIGHT_400};
+    }
+
+    .image-dish{
+      width: 176px;
+    }
+
+    .dish-select-box{
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .dish-insert{
+      padding: 24px 16px;
+    }
+
+    .dish-stepper{
+      gap: 16px;
+    }
+
   }
 
 `

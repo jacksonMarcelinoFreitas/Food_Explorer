@@ -1,3 +1,4 @@
+import { device } from "../../screensizes/devices";
 import { styled } from "styled-components";
 
 export const Container = styled.div`
@@ -11,12 +12,25 @@ export const Container = styled.div`
   justify-content: center;
   flex-direction: column;
 
-  background: ${({theme})=> theme.COLORS.white};
-  color: white;
+  .wrapper, .box-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 72px;
+
+    width: 100%;
+    height: 100%;
+  }
+
+  .box-wrapper{
+    height: fit-content;
+    gap: 32px;
+  }
 
   .input-wrapper{
     display: flex;
-    justify-content: left;
+    justify-content: center;
     flex-direction: column;
     gap: 8px;
 
@@ -25,11 +39,43 @@ export const Container = styled.div`
     width: 100%;
   }
 
-  .brand{
-    margin-bottom: 72px;
+  .hidden{
+    display: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
   }
 
-  .button{
-    margin-bottom: 32px;
+  @media ${device.tablet} {
+    .box-wrapper{
+      width: 80%;
+    }
   }
+
+  @media ${device.desktopSmall} {
+    .wrapper{
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
+
+    .box-wrapper{
+      padding: 64px;
+
+      background: ${({theme}) => theme.COLORS.DARK_700};
+      border-radius: 16px;
+
+      width: 50%;
+    }
+
+    .hidden{
+      display: inline;
+    }
+  }
+
+  @media ${device.desktopMiddle} {
+    .box-wrapper{
+      width: 30%;
+    }
+  }
+
 `

@@ -1,8 +1,8 @@
 import { Container } from './style';
 
-export function ComboBox({children, ...rest}){
+export function ComboBox({children, className, ...rest}){
   return(
-    <Container {...rest}>
+    <Container className={className} {...rest}>
       {children}
     </Container>
   )

@@ -1,13 +1,16 @@
 import { Container } from './style';
 
-export function Input({icon: Icon, ...rest}){
+export function Input({icon: Icon, className, placeholder, ...rest}){
   return(
-    <Container>
+    <Container className={className}>
       {
         Icon&&
         <Icon size={20}/>
       }
-      <input {...rest}/>
+      <input
+        placeholder={placeholder}
+        {...rest}
+      />
     </Container>
   )
 }

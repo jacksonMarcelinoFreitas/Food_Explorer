@@ -14,7 +14,7 @@ export const Container = styled.select`
   font-size: 14px;
 
   color: ${({theme}) => theme.COLORS.LIGHT_400};
-  background: url(${arrow}) 96% / 6% no-repeat ${({theme}) => theme.COLORS.DARK_900};
+  background: url(${arrow}) 96% / 24px no-repeat ${({theme}) => theme.COLORS.DARK_900};
 
   -webkit-appearance: none;
   -moz-appearance: none;

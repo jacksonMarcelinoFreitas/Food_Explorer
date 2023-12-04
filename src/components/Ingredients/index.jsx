@@ -1,8 +1,8 @@
 import { Container } from './style';
 
-export function Ingredients({children, ...rest}){
+export function Ingredients({children, className, ...rest}){
   return(
-    <Container {...rest}>
+    <Container className={className} {...rest}>
       {children}
     </Container>
   )

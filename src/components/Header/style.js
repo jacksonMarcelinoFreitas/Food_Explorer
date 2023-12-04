@@ -1,9 +1,11 @@
+import { device } from "../../screensizes/devices";
 import { styled } from "styled-components";
 
 export const Container = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  gap: 32px;
 
   width: 100%;
   height: 114px;
@@ -12,8 +14,21 @@ export const Container = styled.header`
 
   background-color: ${({theme}) => theme.COLORS.DARK_700};
 
+  .input-search{
+    input::placeholder {
+      text-align: center;
+    }
+  }
 
-  > .brand{
+  .box-search-brand{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    width: 100%;
+  }
+
+  .brand{
     display: flex;
     align-items: center;
     gap: 8px;
@@ -37,12 +52,17 @@ export const Container = styled.header`
     width: 24px;
     height: 24px;
     position: relative;
-
-    > img{
-      width: fit-content;
-      height: auto;
-    }
   }
+
+  .orderButton{
+    width: 216px;
+    display: none;
+  }
+
+  .desktop{
+    display: none;
+  }
+
 
   .iconBrand{
     width: 24px;
@@ -51,5 +71,23 @@ export const Container = styled.header`
   .textBrand{
     font-size: 21px;
   }
+
+  @media ${device.desktopSmall}{
+    .desktop{
+      display: inherit;
+    }
+    .mobile{
+      display: none;
+    }
+
+    .brand{
+      flex-direction: column;
+      align-items: end;
+      gap: 0;
+    }
+  }
+
+
+
 
 `

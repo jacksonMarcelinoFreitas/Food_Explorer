@@ -3,6 +3,8 @@ import { styled } from "styled-components";
 export const Container = styled.div`
   padding: 4px 8px;
 
+  border-radius: 6px;
+
   font-family: Poppins;
   font-size: 14px;
   font-weight: 500;

@@ -6,16 +6,19 @@ import styled, {css}  from 'styled-components';
 // };
 
 export const Container = styled.div`
+  height: 32px;
+
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
 
-  padding: 10px 16px;
+  padding: 0 16px;
   border-radius: 8px;
 
-  background-color: ${({theme, isnew}) => isnew ? 'transparent' : theme.COLORS.LIGHT_600};
-  border: ${({theme, isnew}) => isnew ? `1px dashed ${theme.COLORS.LIGHT_600}` : 'none'};
+  //Estiliza a div dos inputs
+  background-color: ${({theme, $isnew}) => $isnew ? 'transparent' : theme.COLORS.LIGHT_600};
+  border: ${({theme, $isnew}) => $isnew ? `1px dashed ${theme.COLORS.LIGHT_600}` : 'none'};
 
 
   > input{
@@ -30,7 +33,6 @@ export const Container = styled.div`
 
   .button-add, .button-remove{
     display: flex;
-
     background: none;
     border: none;
   }

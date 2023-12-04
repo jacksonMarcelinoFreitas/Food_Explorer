@@ -7,12 +7,10 @@ export function Button({title, icon: Icon, loading = false, ...rest}){
       disabled = { loading }
       {...rest}
     >
-      <div className="icon">
-        {
-          Icon&&
-          <Icon size={22}/>
-        }
-      </div>
+      {
+        Icon&&
+        <Icon size={22}/>
+      }
       <p>
         {loading ? 'Carregando...' : title}
       </p>
