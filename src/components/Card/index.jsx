@@ -2,15 +2,19 @@ import { PiHeartStraightFill, PiPencilSimple } from 'react-icons/pi';
 import { Stepper } from '../../components/Stepper';
 import { Button } from '../../components/Button';
 import { FiHeart } from 'react-icons/fi';
-import { Container } from './style';
+import { useNavigate } from "react-router-dom";
+import { Container} from './style';
 
 
 export function Card({ icon: Icon, image, name, price, isAdmin, description, ...rest }) {
+  const navigate = useNavigate();
   return (
     <Container $isAdmin={isAdmin} {...rest}>
       {isAdmin ? (
         <>
-          <PiPencilSimple className="dish-like" size={24} />
+          {/* <EditLink to="/teste"> */}
+            <PiPencilSimple className="edit-icon" size={24} onClick={()=>{navigate('/viewDish')}} />
+          {/* </EditLink> */}
 
           <div className='image-dish'>
             <img src={image} alt="Dish" />
@@ -24,9 +28,9 @@ export function Card({ icon: Icon, image, name, price, isAdmin, description, ...
       ) : (
         <>
           {Icon ? (
-            <PiHeartStraightFill className="dish-like" size={22} />
+            <PiHeartStraightFill className="dish-like" size={22} onClick={()=>{navigate('/orderSum')}} />
           ) : (
-            <FiHeart className="dish-like" size={22} />
+            <FiHeart className="dish-like" size={22} onClick={()=>{navigate('/orderSum')}} />
           )}
 
           <div className='image-dish'>

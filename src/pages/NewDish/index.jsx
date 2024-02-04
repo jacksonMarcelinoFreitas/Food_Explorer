@@ -99,7 +99,7 @@ export function NewDish(){
           <ButtonNavigation title="voltar" icon={LuChevronLeft} className="buttonNavigation"/>
           <Form>
             <h1>Novo Prato</h1>
-            <div class="layout-desktop">
+            <div className="layout-desktop">
               <div className="box-input">
                 <Label className="label" title="Imagem do prato" />
                 <label htmlFor="dish" className='upload-image'>
@@ -135,7 +135,7 @@ export function NewDish(){
                 </ComboBox>
               </div>
             </div>
-            <div class="layout-desktop">
+            <div className="layout-desktop">
               <div className="box-input">
                 <Label className="label" title="Ingredients" />
                 <div className='box-ingredients'>

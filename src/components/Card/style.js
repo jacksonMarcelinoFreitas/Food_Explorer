@@ -1,5 +1,11 @@
 import { styled } from "styled-components";
 import { device } from "../../screensizes/devices";
+import { Link } from "react-router-dom";
+
+export const EditLink = styled(Link)`
+  // Adicione estilos aqui, se necessário
+`;
+
 
 export const Container = styled.div`
   height: 292px;
@@ -46,6 +52,10 @@ export const Container = styled.div`
     /* color: red; */
     right: 16px;
     top: 16px;
+
+    &:hover{
+      cursor: pointer
+    }
   }
 
   .image-dish{

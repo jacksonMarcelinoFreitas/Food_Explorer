@@ -38,13 +38,13 @@ export function SignUp(){
 
   return(
     <Container>
-        <div class="wrapper">
+        <div className="wrapper">
 
           <Brand
             className="brand"
           />
 
-          <div class="box-wrapper">
+          <div className="box-wrapper">
             <h1 className='hidden'>Crie sua conta</h1>
             <WrapperInput>
               <Label title='Seu nome'/>

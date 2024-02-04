@@ -68,7 +68,7 @@ export function EditDish(){
           />
           <Form>
             <h1>Novo Prato</h1>
-            <div class="layout-desktop">
+            <div className="layout-desktop">
               <div className="box-input">
                 <Label className="label" title="Imagem do prato" />
                 <label htmlFor="dish" className='upload-image'>

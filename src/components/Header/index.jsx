@@ -12,6 +12,10 @@ import { Container } from './style';
 export function Header({isAdmin, valueOrder, ...rest}){
   const navigate = useNavigate();
 
+  const navigateFor = () => {
+    isAdmin? navigate('/newDish') : navigate('/orders');
+  }
+
   return(
     <Container {...rest}>
 
@@ -42,7 +46,8 @@ export function Header({isAdmin, valueOrder, ...rest}){
       <Button
         className='orderButton desktop'
         icon={isAdmin ? null : PiReceiptLight}
-        title={isAdmin ? 'Novo prato' : `Pedidos (${valueOrder})` }
+        title={isAdmin ? 'Novo prato' : `Pedidos (${valueOrder})`}
+        onClick={navigateFor}
       />
 
       <LuLogOut size={32} className='iconLogout desktop'/>

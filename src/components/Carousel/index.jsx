@@ -31,10 +31,9 @@ export function Carousel({items, isAdmin}){
     >
       <Left/>
         {items.map(item => (
-          <SwiperSlide>
+          <SwiperSlide key={item.id}>
               <Card
                   isAdmin={isAdmin}
-                  key={item.id}
                   name={item.name}
                   image={item.image}
                   price={item.price}
