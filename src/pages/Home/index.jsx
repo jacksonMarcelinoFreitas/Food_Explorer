@@ -54,7 +54,7 @@ const items = [
 ]
 
 export function Home(){
-    let isAdmin = false;
+    let isAdmin = true;
 
     return(
         <Container>

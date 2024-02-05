@@ -17,6 +17,7 @@ function AuthProvider({children}){
     try {
 
       const response = await api.post("/sessions", {email, password});
+      console.log(response.data)
       const { user, token } = response.data;
 
       localStorage.setItem("@food_explorer:user", JSON.stringify(user))
@@ -29,7 +30,9 @@ function AuthProvider({children}){
     } catch (error) {
 
       if(error.response){
-        alert(error.response.data.message);
+
+        alert(error.response.data.error);
+        console.log(error.response.data.error);
 
       }else{
 
@@ -43,7 +46,7 @@ function AuthProvider({children}){
     const token = localStorage.getItem("@food_explorer:token");
     const user = localStorage.getItem("@food_explorer:user");
 
-    if(token, user){
+    if(token, user){  
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
       setData({

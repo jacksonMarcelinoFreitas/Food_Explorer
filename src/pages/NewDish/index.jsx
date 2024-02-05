@@ -9,10 +9,11 @@ import { PiUploadSimple } from 'react-icons/pi';
 import { LuChevronLeft } from 'react-icons/lu';
 import { Label } from '../../components/Label';
 import { Input } from '../../components/Input';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/auth';
 import { Container, Form } from './style';
 import { api } from '../../services/api';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 
 export function NewDish(){
@@ -20,14 +21,16 @@ export function NewDish(){
   // const [image, setImage] = useState(imageUrl);
   // const [imageFile, setImageFile] = useState(null);
 
+  const navigate = useNavigate();
   const userData = useAuth();
   const [name, setName] = useState("");
   const [price, setPrice] = useState();
   const [image, setImage] = useState("");
-  const [categories, setCategories] = useState(["teste", "teste", "teste"]);
+  const [categories, setCategories] = useState([]);
   const [ingredients, setIngredient] = useState([]);
   const [description, setDescription] = useState("");
   const [newIngredient, setNewIngredient] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
 
   function handleAddIngredients(){
@@ -46,8 +49,10 @@ export function NewDish(){
       description,
       image,
       ingredients,
-      categorie_id: categories
+      categorie_id: selectedCategory
     }
+
+    console.log(dish)
 
     await createNewDish({dish})
 
@@ -57,6 +62,30 @@ export function NewDish(){
   async function createNewDish({dish}){
     await api.post("/dishes", dish);
   }
+
+  useEffect(()=>{
+
+    async function fetchCategories(){
+      try {
+
+        const response = await api.get(`dish/categories`);
+
+        const categoriesData = response.data;
+
+        setCategories(categoriesData);
+
+
+      } catch (error) {
+        if (error.response) {
+          console.log(error);
+        }
+      }
+
+    }
+
+    fetchCategories();
+
+  },[]);
 
   //função para gerar o preview da imagem
   // function handleChangeImage(event){
@@ -96,7 +125,7 @@ export function NewDish(){
 
       <div className="wrapper">
         <div className="container-wrapper">
-          <ButtonNavigation title="voltar" icon={LuChevronLeft} className="buttonNavigation"/>
+          <ButtonNavigation title="voltar" icon={LuChevronLeft} className="buttonNavigation" onClick={() => navigate("/")}/>
           <Form>
             <h1>Novo Prato</h1>
             <div className="layout-desktop">
@@ -122,16 +151,15 @@ export function NewDish(){
               </div>
               <div className="box-input">
                 <Label className="label" title="Categoria"/>
-                <ComboBox>
+                <ComboBox onChange={(e) => setSelectedCategory(e.target.value)}>
                   {
-                    categories.map((categorie, index) => (
+                    categories.map((category) => (
                       <option
-                        key={String(index)}
-                        onChange={e => setCategories(e.target.value)}>
-                        {categorie}
+                        key={category.id} value={category.id}>
+                        {category.name}
                       </option>
                     ))
-                  }
+                  } 
                 </ComboBox>
               </div>
             </div>

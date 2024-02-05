@@ -8,12 +8,22 @@ import { Order } from '../../components/Order';
 import { HiMiniBars3 } from 'react-icons/hi2';
 import { LuLogOut } from 'react-icons/lu';
 import { Container } from './style';
+import { useAuth } from '../../hooks/auth';
+
 
 export function Header({isAdmin, valueOrder, ...rest}){
   const navigate = useNavigate();
+  const {signOut} = useAuth();
 
   const navigateFor = () => {
     isAdmin? navigate('/newDish') : navigate('/orders');
+  }
+
+  const logout = () => {
+
+    if (window.confirm("Você deseja realmente sair?")) {
+      signOut();
+    }
   }
 
   return(
@@ -29,7 +39,7 @@ export function Header({isAdmin, valueOrder, ...rest}){
       <div className="box-search-brand">
 
         <div className='brand'>
-          <Brand className='logo'/>
+          <Brand className='logo' />
           {isAdmin&&
             <span>admin</span>
           }
@@ -50,10 +60,16 @@ export function Header({isAdmin, valueOrder, ...rest}){
         onClick={navigateFor}
       />
 
-      <LuLogOut size={32} className='iconLogout desktop'/>
+      <LuLogOut 
+        size={32} 
+        className='iconLogout desktop' 
+        onClick={logout}
+      />
 
       {!isAdmin&&
-        <div className='iconOrder mobile'>
+        <div 
+          className='iconOrder mobile' 
+          onClick={navigateFor}>
           <PiReceiptLight size={32}/>
           <Order valueOrder={valueOrder}/>
         </div>

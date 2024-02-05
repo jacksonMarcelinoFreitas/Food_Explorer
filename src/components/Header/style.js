@@ -68,6 +68,11 @@ export const Container = styled.header`
     width: 24px;
   }
 
+  .iconOrder:hover, 
+  .iconLogout:hover{
+    cursor: pointer;
+  }
+
   .textBrand{
     font-size: 21px;
   }
