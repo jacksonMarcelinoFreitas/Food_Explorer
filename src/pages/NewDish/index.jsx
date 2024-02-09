@@ -1,5 +1,6 @@
 import { ButtonNavigation } from '../../components/ButtonNavigation';
 import { IngredientsItem } from '../../components/IngredientsItem';
+import imageDishDefault from '../../assets/dish_default.jpg'
 import { ComboBox } from '../../components/ComboBox';
 import { Textarea } from '../../components/Textarea';
 import { Button } from '../../components/Button';
@@ -10,57 +11,71 @@ import { LuChevronLeft } from 'react-icons/lu';
 import { Label } from '../../components/Label';
 import { Input } from '../../components/Input';
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../../hooks/auth';
 import { Container, Form } from './style';
 import { api } from '../../services/api';
-import { useState, useEffect } from 'react';
 
 
 export function NewDish(){
-  // const imageUrl = dish.image ? `${api.defaults.baseURL}/files/${dish.image}` : avatarPlaceholder;
-  // const [image, setImage] = useState(imageUrl);
-  // const [imageFile, setImageFile] = useState(null);
-
+  
   const navigate = useNavigate();
   const userData = useAuth();
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
   const [price, setPrice] = useState();
-  const [image, setImage] = useState("");
   const [categories, setCategories] = useState([]);
   const [ingredients, setIngredient] = useState([]);
-  const [description, setDescription] = useState("");
-  const [newIngredient, setNewIngredient] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [description, setDescription] = useState('');
+  const [newIngredient, setNewIngredient] = useState([]);
+  const [selectedCategoryId, setSelectedCategoryId] = useState(1);
 
+  const [imageDishFile, setImageDishFile] = useState(null);
+
+  function handleAddImageDish(event){
+    const file = event.target.files[0];
+    file != null ? setImageDishFile(file) : setImageDishFile(imageDishDefault); 
+  }
 
   function handleAddIngredients(){
     setIngredient(prevState => [...prevState, newIngredient]);
-    setNewIngredient("")
+    setNewIngredient('')
   }
 
   function handleRemoveIngredient(deleted){
     setIngredient(prevState => prevState.filter(ingredients => ingredients !== deleted));
   }
 
-  async function handleAddNewDish(){
-    const dish = {
-      name,
-      price,
-      description,
-      image,
-      ingredients,
-      categorie_id: selectedCategory
+
+  async function handleCreateNewDish(){
+    try{
+
+      if (imageDishFile) {
+        const formularioUpload = new FormData();
+        formularioUpload.append("imageDish", imageDishFile);
+        formularioUpload.append("name", name);
+        formularioUpload.append("price", price);
+        formularioUpload.append("description", description);
+        formularioUpload.append("ingredients", ingredients);
+        formularioUpload.append("categorie_id", selectedCategoryId);
+  
+        const resposta = await api.post("/dishes", formularioUpload, {
+          headers: {
+            "Content-Type": "multipart/form-data", // Importante para uploads de arquivos
+          },
+        });
+  
+        return resposta.data;
+      } else {
+        alert("Por favor, selecione uma imagem para o prato.");
+      }
+
+    } catch (error) {
+      if(error.response){
+        alert(error.response.data.message);
+      }else{
+        alert("Não foi possível criar o prato!.")
+      }
     }
-
-    console.log(dish)
-
-    await createNewDish({dish})
-
-    // await updateImage({dish, imageFile});
-  }
-
-  async function createNewDish({dish}){
-    await api.post("/dishes", dish);
   }
 
   useEffect(()=>{
@@ -69,11 +84,9 @@ export function NewDish(){
       try {
 
         const response = await api.get(`dish/categories`);
-
         const categoriesData = response.data;
 
         setCategories(categoriesData);
-
 
       } catch (error) {
         if (error.response) {
@@ -87,37 +100,6 @@ export function NewDish(){
 
   },[]);
 
-  //função para gerar o preview da imagem
-  // function handleChangeImage(event){
-  //   const file = event.target.files[0];
-  //   setImageFile(file);
-
-  //   const imagePreview = URL.createObjectURL(file);
-  //   setImage(imagePreview);
-  // }
-
-  //função para atualizar a imagem
-  // async function updateImage({dish, imageFile}){
-  //   try{
-  //     if(imageFile){
-  //       const fileUploadForm = new FormData();
-  //       fileUploadForm.append("image", imageFile);
-  //       const response = await api.patch("/dishes", fileUploadForm);
-  //       dish.image = response.data.image;
-  //     }
-
-  //   } catch (error) {
-
-  //     if(error.response){
-  //       alert(error.response.data.message);
-
-  //     }else{
-
-  //       alert("Não foi possível atualizar a imagem.");
-
-  //     }
-  //   }
-  // }
 
   return(
     <Container>
@@ -136,7 +118,8 @@ export function NewDish(){
                     <input
                       type='file'
                       id="dish"
-                      onChange={() => {}}>
+                      onChange={ handleAddImageDish }
+                    >
                     </input>
                     <span>Selecione imagem</span>
                 </label>
@@ -151,7 +134,10 @@ export function NewDish(){
               </div>
               <div className="box-input">
                 <Label className="label" title="Categoria"/>
-                <ComboBox onChange={(e) => setSelectedCategory(e.target.value)}>
+                <ComboBox 
+                  value={selectedCategoryId}
+                  onChange={(e) => setSelectedCategoryId(parseInt(e.target.value))}
+                >
                   {
                     categories.map((category) => (
                       <option
@@ -190,7 +176,7 @@ export function NewDish(){
                 <Input
                   type="text"
                   placeholder="R$ 00,00"
-                  onChange={e => setPrice(e.target.value)}
+                  onChange={e => setPrice(parseFloat(e.target.value))}
                 />
               </div>
             </div>
@@ -205,7 +191,7 @@ export function NewDish(){
             <Button
               title="salvar alterações"
               className="button-save"
-              onClick={handleAddNewDish}
+              onClick={handleCreateNewDish}
             />
           </Form>
         </div>
