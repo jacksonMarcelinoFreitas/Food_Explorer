@@ -24,12 +24,16 @@ export function NewDish(){
   const [name, setName] = useState('');
   const [price, setPrice] = useState();
   const [categories, setCategories] = useState([]);
-  const [ingredients, setIngredient] = useState([]);
   const [description, setDescription] = useState('');
+  const [ingredients, setIngredient] = useState([]);
   const [newIngredient, setNewIngredient] = useState([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState(1);
 
   const [imageDishFile, setImageDishFile] = useState(null);
+
+  const handleBack = ()=> {
+    navigate(-1);
+  }
 
   function handleAddImageDish(event){
     const file = event.target.files[0];
@@ -58,13 +62,14 @@ export function NewDish(){
         formularioUpload.append("ingredients", ingredients);
         formularioUpload.append("categorie_id", selectedCategoryId);
   
-        const resposta = await api.post("/dishes", formularioUpload, {
+        await api.post("/dishes", formularioUpload, {
           headers: {
             "Content-Type": "multipart/form-data", // Importante para uploads de arquivos
           },
         });
-  
-        return resposta.data;
+
+        navigate('/');
+
       } else {
         alert("Por favor, selecione uma imagem para o prato.");
       }

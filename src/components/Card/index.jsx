@@ -13,7 +13,7 @@ export function Card({ icon: Icon, image, name, price, isAdmin, description, ...
       {isAdmin ? (
         <>
           {/* <EditLink to="/teste"> */}
-            <PiPencilSimple className="edit-icon" size={24} onClick={()=>{navigate('/viewDish')}} />
+            <PiPencilSimple className="edit-icon" size={24} onClick={()=>{navigate('/editDish')}} />
           {/* </EditLink> */}
 
           <div className='image-dish'>

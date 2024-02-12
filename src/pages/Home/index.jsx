@@ -1,12 +1,12 @@
-import bannerImage from '../../assets/bannerImage.png';
 import bannerImageDesktop from '../../assets/bannerImageDesktop.png';
+import bannerImage from '../../assets/bannerImage.png';
 import imageDish  from '../../assets/image-dish1.png';
 import { AreaCard } from '../../components/AreaCard';
+import { Carousel } from '../../components/Carousel';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { Container } from './style';
 
-import { Carousel } from '../../components/Carousel';
 
 const items = [
     {

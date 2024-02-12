@@ -9,51 +9,130 @@ import { PiUploadSimple } from 'react-icons/pi';
 import { LuChevronLeft } from 'react-icons/lu';
 import { Label } from '../../components/Label';
 import { Input } from '../../components/Input';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { Container, Form } from './style';
-import { useState } from 'react';
 import { api } from '../../services/api';
-import { useNavigate } from 'react-router-dom';
 
 export function EditDish(){
+
+  const { id } = useParams();
   const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [categories, setCategories] = useState(["Teste1", "Teste2", "Teste3"]);
-  const [ingredients, setIngredient] = useState([]);
-  const [newIngredient, setNewIngredient] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState(0);
-  const [image, setImage] = useState("");
   const isAdmin=true;
 
-  function handleAddIngredients(){
-    setIngredient(prevState => [...prevState, newIngredient]);
-    setNewIngredient("")
-  }
+  const [newName, setNewName] = useState('');
+  const [newImage, setNewImage] = useState(null);
+  const [newPrice, setNewPrice] = useState(0);
+  const [newCategorieId, setNewCategorieId] = useState([]);
+  const [newDescription, setNewDescription] = useState('');
+  const [newIngredient, setNewIngredient] = useState('');
+  const [newIngredients, setNewIngredients] = useState([]);
+
+  
+  const [allCategories, setAllCategories] = useState([]);
 
   async function handleUpdateDish(){
-    await api.put('dishes', {
-      name,
-      image,
-      price,
-      categories,
-      ingredients,
-      description,
-    })
 
-    alert('Prato atualizado com sucesso!');
-    navigate('/admin/edit_dish');
+    const formularioUpload = new FormData();
+    formularioUpload.append("name", newName);
+    formularioUpload.append("price", newPrice);
+    formularioUpload.append("imageDish", newImage);
+    formularioUpload.append("description", newDescription);
+    formularioUpload.append("categorie_id", newCategorieId);
+    formularioUpload.append("ingredients", JSON.stringify(newIngredients));
+
+    try{
+      await api.put(`/dishes/${id}`, formularioUpload, {
+        headers: {
+          "Content-Type": "multipart/form-data", 
+        },
+      });
+
+      alert('Prato atualizado com sucesso!');
+      navigate('/');
+
+    } catch (error) {
+      if(error.response){
+        alert(error.response.data.message);
+      }else{
+        alert("Não foi possível criar o prato!")
+      }
+    }
   }
-
+  
   async function handleDeleteDish(){
-    await api.delete('dishes');
+    await api.delete(`/dishes/${id}`);
 
     alert('Prato removido com sucesso!');
-    navigate('');
+    navigate('/');
   }
 
-  function handleRemoveDish(deleted){
-    setIngredient(prevState => prevState.filter(ingredients => ingredients !== deleted));
+  function handleRemoveIngredient(deleted){
+    setNewIngredients(prevState => prevState.filter(ingredients => ingredients !== deleted));
   }
+
+  function handleAddIngredients() {
+    if (newIngredient.trim() !== '') {
+      setNewIngredients(prevState => [...prevState, { name: newIngredient }]);
+      setNewIngredient('');
+
+    } else {
+      alert('Por favor preenha o campo em branco para adicionar.')
+    }
+  }
+
+  useEffect(()=>{
+    async function fetchDish(){
+      try {
+
+        const response = await api.get(`/dishes/${id}`);
+        const { dish, ingredients } = response.data;
+
+        const ingredientsName = ingredients.map(ingredient => ({ name: ingredient.name }));
+
+        console.log(ingredientsName)
+        
+        setNewName(dish.name)
+        setNewImage(dish.image)
+        setNewPrice(dish.price)
+        setNewDescription(dish.description)
+        setNewCategorieId(dish.categorie_id)
+        setNewIngredients(ingredientsName)
+
+      } catch (error) {
+
+        if (error.response) {
+          alert(error.response.data.message);
+          if (error.response.status === 403) {
+            signOut();
+            navigate('/');
+          }
+        }else{
+          alert("Não foi possível trazer a o prato!")
+        }
+
+      }
+
+    }
+
+    async function fetchAllCategories(){
+      try {
+
+        const response = await api.get(`dish/categories`);
+        setAllCategories(response.data);
+
+      } catch (error) {
+        if (error.response) {
+          console.log(error);
+        }
+      }
+
+    }
+
+    fetchDish();
+    fetchAllCategories();
+
+  },[])
 
   return(
     <Container>
@@ -67,13 +146,13 @@ export function EditDish(){
             className="buttonNavigation"
           />
           <Form>
-            <h1>Novo Prato</h1>
+            <h1>Editar Prato</h1>
             <div className="layout-desktop">
               <div className="box-input">
                 <Label className="label" title="Imagem do prato" />
                 <label htmlFor="dish" className='upload-image'>
                     <PiUploadSimple size={24}/>
-                    <input type='file' id="dish"></input>
+                    <input type='file' id='dish' onChange={e => setNewImage(e.target.files[0])}></input>
                     <span>Selecione imagem para alterá-la</span>
                 </label>
               </div>
@@ -82,16 +161,20 @@ export function EditDish(){
                 <Input
                   type="text"
                   placeholder="Ex.: Salada Ceasar"
-                  value={name}
-                  onChange={e => setName(e.target.value)}
+                  value={newName}
+                  onChange={e => setNewName(e.target.value)}
                 />
               </div>
               <div className="box-input">
                 <Label className="label" title="Categoria" />
-                <ComboBox>
-                  {
-                    categories.map((category, index) => (
-                      <option key={String(index)}>{category}</option>
+                <ComboBox 
+                  value={newCategorieId}  
+                  onChange={e => setNewCategorieId(e.target.value)}
+                >
+                  {allCategories.map((category) => (
+                    <option key={category.id} value={category.id}>
+                      {category.name}
+                    </option>
                     ))
                   }
                 </ComboBox>
@@ -102,30 +185,30 @@ export function EditDish(){
                 <Label className="label" title="Ingredients" />
                 <div className='box-ingredients'>
                   {
-                    ingredients.map( (ingredient, index)=> (
+                    newIngredients.map((ingredient, index)=> (
                       <IngredientsItem
                         key={String(index)}
-                        value={ingredient}
-                        onClick={() => handleRemoveDish(ingredient)}
+                        value={ingredient.name}
+                        onClick={() => handleRemoveIngredient(ingredient)}
                       />
                     ))
                   }
                   <IngredientsItem
-                        isnew
-                        placeholder="Adicionar"
-                        value={newIngredient}
-                        onChange={e => setNewIngredient(e.target.value)}
-                        onClick={handleAddIngredients}
-                      />
+                    isnew
+                    placeholder="Adicionar"
+                    value={newIngredient}
+                    onChange={e => setNewIngredient(e.target.value)}
+                    onClick={handleAddIngredients}
+                  />
                 </div>
               </div>
               <div className="box-input">
                 <Label className="label" title="Preço" />
                 <Input
                   type="text"
-                  placeholder="R$ 00,00"
-                  value={price}
-                  onChange={e => setPrice(e.target.value)}
+                  placeholder="R$ 00.00"
+                  value={newPrice}
+                  onChange={e => setNewPrice(e.target.value)}
                 />
               </div>
             </div>
@@ -134,8 +217,8 @@ export function EditDish(){
               <Textarea
                 type="text"
                 placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
-                value={description}
-                onChange={e => setDescription(e.target.value)}
+                value={newDescription}
+                onChange={e => setNewDescription(e.target.value)}
               />
             </div>
             <div className="box-button">

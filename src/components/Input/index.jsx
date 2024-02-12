@@ -1,6 +1,6 @@
 import { Container } from './style';
 
-export function Input({icon: Icon, className, placeholder, ...rest}){
+export function Input({icon: Icon, className, placeholder, onChange, value, ...rest}){
   return(
     <Container className={className}>
       {
@@ -8,7 +8,9 @@ export function Input({icon: Icon, className, placeholder, ...rest}){
         <Icon size={20}/>
       }
       <input
+        value={value}
         placeholder={placeholder}
+        onChange={onChange}
         {...rest}
       />
     </Container>
