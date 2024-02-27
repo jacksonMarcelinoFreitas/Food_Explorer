@@ -5,7 +5,7 @@ import { api } from "../services/api";
 const AuthContext = createContext({})
 
 function AuthProvider({children}){
-  const [data, setData] = useState({});
+  const [data, setData] = useState({} );
 
   function signOut(){
     localStorage.removeItem("@food_explorer:token");
@@ -21,7 +21,7 @@ function AuthProvider({children}){
       const { user, token } = response.data;
 
       localStorage.setItem("@food_explorer:user", JSON.stringify(user))
-      localStorage.setItem("@food_explorer:token", token)
+      localStorage.setItem("@food_explorer:token",  )
 
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 

@@ -1,15 +1,15 @@
 import { ButtonNavigation } from '../../components/ButtonNavigation';
 import { IngredientsItem } from '../../components/IngredientsItem';
-import { Button } from '../../components/Button';
-import { Textarea } from '../../components/Textarea';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ComboBox } from '../../components/ComboBox';
+import { Textarea } from '../../components/Textarea';
+import { Button } from '../../components/Button';
 import { Footer } from '../../components/Footer';
 import { Header } from '../../components/Header';
 import { PiUploadSimple } from 'react-icons/pi';
 import { LuChevronLeft } from 'react-icons/lu';
 import { Label } from '../../components/Label';
 import { Input } from '../../components/Input';
-import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Container, Form } from './style';
 import { api } from '../../services/api';
@@ -21,14 +21,13 @@ export function EditDish(){
   const isAdmin=true;
 
   const [newName, setNewName] = useState('');
-  const [newImage, setNewImage] = useState(null);
   const [newPrice, setNewPrice] = useState(0);
+  const [newImage, setNewImage] = useState(null);
   const [newCategorieId, setNewCategorieId] = useState([]);
   const [newDescription, setNewDescription] = useState('');
   const [newIngredient, setNewIngredient] = useState('');
   const [newIngredients, setNewIngredients] = useState([]);
 
-  
   const [allCategories, setAllCategories] = useState([]);
 
   async function handleUpdateDish(){
@@ -61,10 +60,11 @@ export function EditDish(){
   }
   
   async function handleDeleteDish(){
-    await api.delete(`/dishes/${id}`);
-
-    alert('Prato removido com sucesso!');
-    navigate('/');
+    if(confirm("Você tem certeza que deseja excluir este prato?")){
+      await api.delete(`/dishes/${id}`);
+      alert('Prato removido com sucesso!');
+      navigate('/');
+    }
   }
 
   function handleRemoveIngredient(deleted){
@@ -82,22 +82,20 @@ export function EditDish(){
   }
 
   useEffect(()=>{
-    async function fetchDish(){
+    (async function fetchDish(){
       try {
 
         const response = await api.get(`/dishes/${id}`);
         const { dish, ingredients } = response.data;
 
         const ingredientsName = ingredients.map(ingredient => ({ name: ingredient.name }));
-
-        console.log(ingredientsName)
         
         setNewName(dish.name)
         setNewImage(dish.image)
         setNewPrice(dish.price)
+        setNewIngredients(ingredientsName)
         setNewDescription(dish.description)
         setNewCategorieId(dish.categorie_id)
-        setNewIngredients(ingredientsName)
 
       } catch (error) {
 
@@ -113,9 +111,9 @@ export function EditDish(){
 
       }
 
-    }
+    })();
 
-    async function fetchAllCategories(){
+    (async function fetchAllCategories(){
       try {
 
         const response = await api.get(`dish/categories`);
@@ -127,10 +125,7 @@ export function EditDish(){
         }
       }
 
-    }
-
-    fetchDish();
-    fetchAllCategories();
+    })();
 
   },[])
 

@@ -6,14 +6,14 @@ import { useNavigate } from "react-router-dom";
 import { Container} from './style';
 
 
-export function Card({ icon: Icon, image, name, price, isAdmin, description, ...rest }) {
+export function Card({ icon: Icon, image, name, price, isAdmin, description, id, ...rest }) {
   const navigate = useNavigate();
   return (
     <Container $isAdmin={isAdmin} {...rest}>
       {isAdmin ? (
         <>
           {/* <EditLink to="/teste"> */}
-            <PiPencilSimple className="edit-icon" size={24} onClick={()=>{navigate('/editDish')}} />
+            <PiPencilSimple className="edit-icon" size={24} onClick={()=>{navigate(`/editDish/${id}`)}} />
           {/* </EditLink> */}
 
           <div className='image-dish'>

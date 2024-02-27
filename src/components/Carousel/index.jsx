@@ -4,8 +4,11 @@ import { Navigation } from 'swiper/modules';
 import { Card } from '../Card';
 import 'swiper/css/navigation';
 import 'swiper/css/bundle';
+import { useNavigate } from 'react-router-dom';
 
 export function Carousel({items, isAdmin}){
+  const navigate = useNavigate();
+
   return(
     <StyledSwiper
       spaceBetween={16}
@@ -38,6 +41,8 @@ export function Carousel({items, isAdmin}){
                   image={item.image}
                   price={item.price}
                   description={item.description}
+                  id={item.id}
+                  onClick={() => {navigate(`/viewDish/${item.id}`)}}
               />
           </SwiperSlide>
           ))
