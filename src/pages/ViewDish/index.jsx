@@ -12,17 +12,26 @@ import { PiReceipt } from "react-icons/pi";
 import { Container } from './style';
 import { useEffect, useState } from 'react';
 import { api } from '../../services/api';
+import { useAuth } from '../../hooks/auth';
 
+export function ViewDish({countOrder, setCountOrder}){
+  const { user } = useAuth();
+  let isAdmin
 
-export function ViewDish(){
-  let countOrder = 1;
-  const isAdmin = true;
+  user.isAdmin == 1 ? isAdmin = true : isAdmin = false ;  
 
   const [ingredients, setIngredients] = useState([]);
   const [dish, setDish] = useState([]);
 
   const navigate = useNavigate();
   const { id } = useParams();
+
+  // const increment = () => setCountOrder(countOrder + 1);
+  // const decrement = () => {
+  //   if (countOrder > 0) {
+  //     setCountOrder(countOrder - 1);
+  //   }
+  // };
 
   useEffect(() => {
 
@@ -60,7 +69,7 @@ export function ViewDish(){
             title="Voltar" 
             icon={LuChevronLeft} 
             className="buttonNavigation"
-            onClick={() => {navigate(-1)}}  
+            onClick={() => {navigate('/')}}  
           />
 
             <div className="container-wrapper">
@@ -90,7 +99,7 @@ export function ViewDish(){
                   ) :
                   (
                     <>
-                      <Stepper countOrder={countOrder} className="dish_stepper"/>
+                      <Stepper countOrder={countOrder} setCountOrder={setCountOrder} className="dish_stepper"/>
                       <Button className="dish-insert" title={`incluir \u2022 ${dish.price}`} icon={PiReceipt}/>
                     </>
                   )

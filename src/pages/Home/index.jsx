@@ -5,17 +5,16 @@ import { AreaCard } from '../../components/AreaCard';
 import { Carousel } from '../../components/Carousel';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
+import { useEffect, useState } from 'react';
+import { useAuth } from '../../hooks/auth';
 import { api } from '../../services/api';
 import { Container } from './style';
-import { useEffect, useState } from 'react';
 
 export function Home(){
-    let isAdmin = true;
-
-    /*
-    -- trabalhar o state e otimizar o carregamento
-    -- garantir que na primeira renderização da página os elementos já estarão recarregados
-    */
+    const { user } = useAuth();
+    let isAdmin
+    
+    user.isAdmin == 1 ? isAdmin = true : isAdmin = false ;   
 
     const [itemsMeals, setItemsMeals] = useState([]);
     const [itemsDrinks, setItemsDrinks] = useState([]);
@@ -32,6 +31,7 @@ export function Home(){
                     image: `${api.defaults.baseURL}/files/${dish.image}`,
                 }));
 
+                console.log(data)
                 await classifyDish(data);
                 
             } catch (error) {
@@ -51,7 +51,7 @@ export function Home(){
     return(
         <Container>
             <Header
-                valueOrder={25}
+                valueOrder={0}
                 isAdmin={isAdmin}
             />
 

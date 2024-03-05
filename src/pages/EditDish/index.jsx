@@ -48,7 +48,7 @@ export function EditDish(){
       });
 
       alert('Prato atualizado com sucesso!');
-      navigate('/');
+      navigate(`/viewDish/${id}`);    
 
     } catch (error) {
       if(error.response){
@@ -139,6 +139,7 @@ export function EditDish(){
             title="voltar"
             icon={LuChevronLeft}
             className="buttonNavigation"
+            onClick={() => {navigate(`/viewDish/${id}`)}}
           />
           <Form>
             <h1>Editar Prato</h1>

@@ -41,8 +41,9 @@ export function Carousel({items, isAdmin}){
                   image={item.image}
                   price={item.price}
                   description={item.description}
+                  isLiked={item.isLiked}
+                  orders={item.orders}
                   id={item.id}
-                  onClick={() => {navigate(`/viewDish/${item.id}`)}}
               />
           </SwiperSlide>
           ))

@@ -7,6 +7,10 @@ export const Container = styled.div`
   justify-content: center;
   gap: 14px;
 
+  svg:hover{
+    cursor: pointer;
+  }
+
   @media ${device.desktopSmall}{
     span{
       font-size: 20px;
