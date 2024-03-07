@@ -12,13 +12,21 @@ export function Stepper({countOrder, setCountOrder, ...rest }) {
     }
   };
 
+  const formatCount = (count) => {
+    if (count === 0) {
+      return "01";
+    } else {
+      return count < 10 ? `0${count}` : count;
+    }
+  };
+
   return(
     <Container>
         <FiMinus 
           size={24} 
           onClick={decrement}
         />
-          <span>{countOrder}</span>
+          <span>{formatCount(countOrder)}</span>
         <FiPlus 
           size={24} 
           onClick={increment}

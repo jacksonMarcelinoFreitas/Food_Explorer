@@ -9,6 +9,7 @@ import { api } from '../../services/api';
 
 
 export function Card({ icon: Icon, image, name, price, isAdmin, description, isLiked, orders, id, ...rest }) {
+
   const [countOrder, setCountOrder] = useState(orders);
   const [like, setLike] = useState(isLiked);
 

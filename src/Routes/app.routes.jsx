@@ -5,6 +5,7 @@ import { EditDish } from '../pages/EditDish';
 import { ViewDish } from '../pages/ViewDish';
 import { Home } from '../pages/Home';
 import { Menu } from '../pages/Menu';
+import { Order } from '../pages/Order';
 
 export function AppRoutes(){
   return(
@@ -14,6 +15,7 @@ export function AppRoutes(){
       <Route path="/viewDish/:id" element={ <ViewDish/> } />
       <Route path="/newDish" element={ <NewDish/> } />
       <Route path="/editDish/:id" element={ <EditDish/> } />
+      <Route path="/order" element={ <Order/> } />
     </Routes>
   )
 }

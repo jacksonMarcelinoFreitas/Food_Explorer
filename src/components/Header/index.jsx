@@ -16,7 +16,7 @@ export function Header({isAdmin, valueOrder, ...rest}){
   const {signOut} = useAuth();
 
   const navigateFor = () => {
-    isAdmin? navigate('/newDish') : navigate('/orders');
+    isAdmin? navigate('/newDish') : navigate('/order');
   }
 
   const logout = () => {
