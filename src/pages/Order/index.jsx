@@ -11,9 +11,15 @@ import { PiReceipt } from "react-icons/pi";
 import { useAuth } from '../../hooks/auth';
 import { api } from '../../services/api';
 import { SiPix } from "react-icons/si";
-import { Container } from './style';
+import { Container, ButtonPayment } from './style';
 
 export function Order(){
+
+    const [selectedTab, setSelectedTab] = useState('pix');
+
+    const handleTabClick = (method) => {
+        setSelectedTab(method);
+    };
 
     const { user } = useAuth();
     let isAdmin
@@ -37,39 +43,70 @@ export function Order(){
                 valueOrder={0}
                 isAdmin={isAdmin}
             />
+            <div className="wrapper">
 
-            <div className='box-orders'>
-                <CardOrder data={data}/>
-                <CardOrder data={data}/>
-                <CardOrder data={data}/>
-                <p>Total: R${data.sum.toLocaleString('pt-br', {minimumFractionDigits: 2})}</p>
-            </div>
+                <div className='box-orders'>
+                    <h1>Meu pedido</h1>
 
-            <div className='box-payment'>
-                <button className='payment-method'>
-                    <SiPix />
-                    <p>Pix</p>
-                </button>
-                <button className='payment-method'>
-                    <BsFillCreditCard2BackFill />
-                    <p>Crédito</p>
-                </button>
-                <img src={qr_code} alt="qr code payment" />
-                <form action="">
-                    <Label title='Número do cartão'/>
-                    <Input placeholder='0000 0000 0000 0000'/>
+                    <div className="cards">
+                        <CardOrder data={data}/>
+                        <CardOrder data={data}/>
+                        <CardOrder data={data}/>
+                        <CardOrder data={data}/>
+                        <CardOrder data={data}/>
+                        <CardOrder data={data}/>
+                        <CardOrder data={data}/>
+                        <CardOrder data={data}/>
+                    </div>
+                    
+                    <p className="amount">Total: R${data.sum.toLocaleString('pt-br', {minimumFractionDigits: 2})}</p>
+                </div>
 
-                    <Label title='Validade'/>
-                    <Input placeholder='04/25'/>
+                <div className="box-wrapper">
 
-                    <Label title='CVC'/>
-                    <Input placeholder='000'/>
+                    <h1>Pagamento</h1>
 
-                    <Button icon={PiReceipt} title='Finalizar pagamento'/>
-                </form>
-            </div>
+                    <div className="box-square">
+                        <div className="box-button">
+                            <ButtonPayment className={selectedTab === 'pix' ? 'selected' : ''} onClick={() => handleTabClick('pix')}>
+                                <SiPix size={24}/>
+                                <p>Pix</p>
+                            </ButtonPayment>
+                            <ButtonPayment className={selectedTab === 'card' ? 'selected' : ''} onClick={() => handleTabClick('card')}>
+                                <BsFillCreditCard2BackFill size={24}/>
+                                <p>Crédito</p>
+                            </ButtonPayment>
+                        </div>
+                        
+                        <div className="box-method">
+                            {selectedTab === 'pix' && (
+                                <img src={qr_code} alt="qr code payment"/>
+                            )}
+                            {selectedTab === 'card' && (
+                                <form action="">
+                                    <div className="field">
+                                        <Label title='Número do cartão'/>
+                                        <Input placeholder='0000 0000 0000 0000'/>
+                                    </div>
+                                    <div className="field">
+                                        <div>
+                                            <Label title='Validade'/>
+                                            <Input placeholder='04/25'/>
+                                        </div>
+                                        <div>
+                                            <Label title='CVC'/>
+                                            <Input placeholder='000'/>
+                                        </div>
+                                    </div>
+                                    <Button icon={PiReceipt} title='Finalizar pagamento'/>
+                                </form>
+                            )}
+                        </div>
+                    </div>
+                </div>
 
-           
+
+            </div> 
         <Footer />
 
         </Container>
