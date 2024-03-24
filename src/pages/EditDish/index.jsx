@@ -13,6 +13,7 @@ import { Input } from '../../components/Input';
 import { useState, useEffect } from 'react';
 import { Container, Form } from './style';
 import { api } from '../../services/api';
+import { toast } from 'react-toastify';
 
 export function EditDish(){
 
@@ -47,14 +48,14 @@ export function EditDish(){
         },
       });
 
-      alert('Prato atualizado com sucesso!');
+      toast.success('Prato atualizado com sucesso!');
       navigate(`/viewDish/${id}`);    
 
     } catch (error) {
       if(error.response){
-        alert(error.response.data.message);
+        toast.error(`${error}`)
       }else{
-        alert("Não foi possível criar o prato!")
+        toast.error('Não foi possível criar o prato!');
       }
     }
   }
@@ -62,7 +63,7 @@ export function EditDish(){
   async function handleDeleteDish(){
     if(confirm("Você tem certeza que deseja excluir este prato?")){
       await api.delete(`/dishes/${id}`);
-      alert('Prato removido com sucesso!');
+      toast.success('Prato removido com sucesso!')
       navigate('/');
     }
   }
@@ -77,7 +78,7 @@ export function EditDish(){
       setNewIngredient('');
 
     } else {
-      alert('Por favor preenha o campo em branco para adicionar.')
+      toast.warn('Por favor, preenha o campo em branco para adicionar.')
     }
   }
 
@@ -100,13 +101,13 @@ export function EditDish(){
       } catch (error) {
 
         if (error.response) {
-          alert(error.response.data.message);
+          toast.error("Não foi possível trazer os dados do prato!")
           if (error.response.status === 403) {
             signOut();
             navigate('/');
           }
         }else{
-          alert("Não foi possível trazer a o prato!")
+          toast.error("Não foi possível trazer os dados do prato!")
         }
 
       }
@@ -121,7 +122,7 @@ export function EditDish(){
 
       } catch (error) {
         if (error.response) {
-          console.log(error);
+          toast.error(`${error}`);
         }
       }
 

@@ -1,53 +1,44 @@
 import { PiHeartStraightFill, PiPencilSimple } from 'react-icons/pi';
 import { Stepper } from '../../components/Stepper';
 import { Button } from '../../components/Button';
-import { FiHeart } from 'react-icons/fi';
 import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import { FiHeart } from 'react-icons/fi';
+import { toast } from 'react-toastify';
 import { Container} from './style';
-import { useEffect, useState } from 'react';
-import { api } from '../../services/api';
+import { useUpdateOrder } from '../../hooks/orders';
 
 
 export function Card({ icon: Icon, image, name, price, isAdmin, description, isLiked, orders, id, ...rest }) {
 
   const [countOrder, setCountOrder] = useState(orders);
   const [like, setLike] = useState(isLiked);
+  const {updateOrders} = useUpdateOrder();
 
   async function handleChangeOrderAndLike(origin){
     try {
 
       if(origin == 0){
-        var response = await api.put(`/dish/commonDishesOrders/${id}`, {orders: countOrder});
-        console.log('Novo count:', countOrder);
+        updateOrders({ amountOrder: countOrder, dish_id: id })
+        toast.success(`Adicionado com sucesso!`);
       } else{
-        var response = await api.put(`/dish/commonDishesOrders/${id}`, {isLiked: !like});
+        updateOrders({ isLiked: !like, dish_id: id })
         setLike(!like); 
-        console.log('Novo estado de like:', !like);
+        !like ? toast.success(`❤️`) : toast.success(`👎`);
       }
-
-      console.log(response.data);
-  
   
     } catch (error) {
-  
-      if(error.response){
-        alert(error.response.data.error);
-        console.log(error.response.data.error); 
-      }
-
+      toast.error(`${error}`)
     }
        
   }
-
 
   const navigate = useNavigate();
   return (
     <Container $isAdmin={isAdmin} {...rest}>
       {isAdmin ? (
         <>
-          {/* <EditLink to="/teste"> */}
-            <PiPencilSimple className="edit-icon" size={24} onClick={()=>{navigate(`/viewDish/${id}`)}}/>
-          {/* </EditLink> */}
+          <PiPencilSimple className="edit-icon" size={24} onClick={()=>{navigate(`/viewDish/${id}`)}}/>
 
           <div className='image-dish'>
             <img src={image} alt="Dish" />
@@ -75,7 +66,7 @@ export function Card({ icon: Icon, image, name, price, isAdmin, description, isL
           )}
 
           <div className='image-dish'>
-            <img src={image} alt="Dish" />
+            <img src={image} alt="Dish" onClick={()=>{navigate(`/viewDish/${id}`)}}/>
           </div>
 
           <p className='dish-name'>{name} &#62;</p>

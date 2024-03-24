@@ -60,6 +60,7 @@ export const Container = styled.div`
 
   .image-dish{
     width: 88px;
+    cursor: pointer;
 
     > img{
       width: 100%;

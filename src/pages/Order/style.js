@@ -9,6 +9,22 @@ export const Container = styled.div`
 
   }
 
+  .not-have-order{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    flex-direction: column;
+    gap: 24px;
+
+    p{
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+      font-size: 24px;
+      color: ${({theme}) => theme.COLORS.CAKE_200};
+    }
+  }
+
   .wrapper{
     padding: 24px 196px;
 

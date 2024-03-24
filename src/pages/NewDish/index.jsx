@@ -15,6 +15,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../../hooks/auth';
 import { Container, Form } from './style';
 import { api } from '../../services/api';
+import { toast } from 'react-toastify';
 
 
 export function NewDish(){
@@ -68,17 +69,19 @@ export function NewDish(){
           },
         });
 
+        toast.success("Prato criado com sucesso!");
+
         navigate('/');
 
       } else {
-        alert("Por favor, selecione uma imagem para o prato.");
+        toast.warn("Por favor, insira uma imagem para o prato!");
       }
 
     } catch (error) {
       if(error.response){
-        alert(error.response.data.message);
+        toast.error(`${error.response}`);
       }else{
-        alert("Não foi possível criar o prato!.")
+        toast.error("Não foi possível criar o prato!");
       }
     }
   }
@@ -94,8 +97,10 @@ export function NewDish(){
         setCategories(categoriesData);
 
       } catch (error) {
-        if (error.response) {
-          console.log(error);
+        if (error) {
+          toast.error(`${error}`);
+        }else{
+          toast.error("Falha ao carregar dados!");
         }
       }
 

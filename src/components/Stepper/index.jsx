@@ -1,23 +1,19 @@
 import { Container } from './style';
 import { FiMinus, FiPlus } from 'react-icons/fi';
-import { Button } from '../../components/Button';
-import { useState } from 'react';
 
 export function Stepper({countOrder, setCountOrder, ...rest }) {
 
-  const increment = () => setCountOrder(countOrder + 1);
+  const increment = () => setCountOrder(++countOrder);
   const decrement = () => {
     if (countOrder > 0) {
-      setCountOrder(countOrder - 1);
+      setCountOrder(--countOrder);
+    }else{
+      alert('Faz isso não ... 🫤🤦‍♂️')
     }
   };
 
   const formatCount = (count) => {
-    if (count === 0) {
-      return "01";
-    } else {
-      return count < 10 ? `0${count}` : count;
-    }
+    return count < 10 ? `0${count}` : count;
   };
 
   return(
@@ -26,7 +22,7 @@ export function Stepper({countOrder, setCountOrder, ...rest }) {
           size={24} 
           onClick={decrement}
         />
-          <span>{formatCount(countOrder)}</span>
+        <span>{formatCount(countOrder)}</span>
         <FiPlus 
           size={24} 
           onClick={increment}
