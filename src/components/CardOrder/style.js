@@ -1,14 +1,19 @@
+import { device } from '../../screensizes/devices';
 import { styled } from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
+  height: 150px;
 
   display: flex;
   align-items: center;
   justify-content: left;
-  gap: 12px;
+  gap: 16px;
 
-  padding: 16px 0;
+  padding: 16px 24px;
+
+  background-color: ${({theme}) => theme.COLORS.DARK_400};
+  border-radius: 12px ;
 
   .image-dish{
     width: 72px;
@@ -43,6 +48,10 @@ export const Container = styled.div`
       font-weight: 600;
       font-family:'Roboto', sans-serif;
     }
+  }
+
+  @media ${device.tablet} {
+    height: fit-content;
   }
 
 `

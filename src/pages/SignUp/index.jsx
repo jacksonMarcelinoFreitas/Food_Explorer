@@ -6,6 +6,7 @@ import { Label } from '../../components/Label';
 import { Input } from '../../components/Input';
 import { Brand } from '../../components/Brand';
 import { api } from '../../services/api';
+import { toast } from 'react-toastify';
 import { Container } from './style';
 import { useState } from 'react';
 
@@ -18,19 +19,20 @@ export function SignUp(){
 
   async function handleSignUp(){
     if(!name || !email || !password){
-      return alert("⚠️Todos os campos devem ser preenchidos!")
+      toast.warn("Todos os campos devem ser preenchidos!")
     }
 
     await api.post("/users", { name, email, password })
       .then(() => {
-          alert("Usuário cadastrado com sucesso!");
+          toast.success("Todos os campos devem ser preenchidos!")
           navigate("/");
       })
       .catch(error => {
           if(error.response){
-              alert(error.response.data.message);
-          } else {
-              alert("Não foi possível cadastrar");
+              toast.error(`${error.response.data.message}`)
+              console.error(error.response.data.message)
+            } else {
+              toast.error("Não foi possível cadastrar")
           }
       });
 

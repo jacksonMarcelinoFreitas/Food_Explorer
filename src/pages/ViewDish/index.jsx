@@ -33,6 +33,10 @@ export function ViewDish(){
     updateOrders({ amountOrder: countOrder, dish_id: id });
   }
 
+  function handleBack(){
+    navigate(-1)
+  }
+
   useEffect(() => {
     (async function fetchDish(){
       try {
@@ -69,7 +73,7 @@ export function ViewDish(){
             title="Voltar" 
             icon={LuChevronLeft} 
             className="buttonNavigation"
-            onClick={() => {navigate('/')}}  
+            onClick={handleBack}  
           />
 
             <div className="container-wrapper">

@@ -12,16 +12,12 @@ import { Label } from '../../components/Label';
 import { Input } from '../../components/Input';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { useAuth } from '../../hooks/auth';
 import { Container, Form } from './style';
 import { api } from '../../services/api';
 import { toast } from 'react-toastify';
 
-
 export function NewDish(){
-  
   const navigate = useNavigate();
-  const userData = useAuth();
   const [name, setName] = useState('');
   const [price, setPrice] = useState();
   const [categories, setCategories] = useState([]);
@@ -29,12 +25,7 @@ export function NewDish(){
   const [ingredients, setIngredient] = useState([]);
   const [newIngredient, setNewIngredient] = useState([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState(1);
-
   const [imageDishFile, setImageDishFile] = useState(null);
-
-  const handleBack = ()=> {
-    navigate(-1);
-  }
 
   function handleAddImageDish(event){
     const file = event.target.files[0];
@@ -49,7 +40,6 @@ export function NewDish(){
   function handleRemoveIngredient(deleted){
     setIngredient(prevState => prevState.filter(ingredients => ingredients !== deleted));
   }
-
 
   async function handleCreateNewDish(){
     try{
@@ -206,7 +196,6 @@ export function NewDish(){
           </Form>
         </div>
       </div>
-
       <Footer />
     </Container>
   )

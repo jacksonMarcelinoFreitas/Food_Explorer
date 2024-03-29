@@ -1,52 +1,42 @@
-import { Left, Right, StyledSwiper } from './style';
-import { SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
+import { SplideTrack, SplideSlide } from '@splidejs/react-splide';
+import { IoIosArrowBack, IoIosArrowForward  } from "react-icons/io";
+import { splideOptions } from '../../styles/splideConfig'
+import { Left, Right, StyledSplide } from './style';
+import '@splidejs/splide/css/sea-green';
 import { Card } from '../Card';
-import 'swiper/css/navigation';
-import 'swiper/css/bundle';
 
 export function Carousel({items, isAdmin}){
-
   return(
-    <StyledSwiper
-      spaceBetween={16}
-      slidesPerView={2}
-      navigation={true}
-      className="mySwiper"
-      // centeredSlides={true}
-      modules={[Navigation]}
-      breakpoints={{
-          640: {
-              slidesPerView: 3,
-              spaceBetween: 16,
-          },
-          768: {
-              slidesPerView: 3,
-              spaceBetween: 16,
-          },
-          1024: {
-              slidesPerView: 4,
-              spaceBetween: 32,
-          },
-      }}
+    <>
+    <StyledSplide
+      hasTrack={ false } 
+      aria-label="..."
+      options={ splideOptions }
     >
       <Left/>
+      <SplideTrack>
         {items.map(item => (
-          <SwiperSlide key={item.id}>
-              <Card
-                  isAdmin={isAdmin}
-                  name={item.name}
-                  image={item.image}
-                  price={item.price}
-                  description={item.description}
-                  isLiked={item.isLiked}
-                  orders={item.orders}
-                  id={item.id}
-              />
-          </SwiperSlide>
-          ))
+          <SplideSlide key={item.id}>
+            <Card
+              isAdmin={isAdmin}
+              name={item.name}
+              image={item.image}
+              price={item.price}
+              description={item.description}
+              isLiked={item.isLiked}
+              orders={item.orders}
+              id={item.id}
+            />
+          </SplideSlide>
+        ))
         }
+      </SplideTrack>
       <Right/>
-    </StyledSwiper>
+      <div className="splide__arrows">
+        <IoIosArrowBack className="splide__arrow splide__arrow--prev"/>
+        <IoIosArrowForward className="splide__arrow splide__arrow--next"/>
+      </div>
+    </StyledSplide>
+    </>
   )
 }

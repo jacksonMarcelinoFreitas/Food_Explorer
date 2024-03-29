@@ -4,6 +4,7 @@ import { FiMinus, FiPlus } from 'react-icons/fi';
 export function Stepper({countOrder, setCountOrder, ...rest }) {
 
   const increment = () => setCountOrder(++countOrder);
+  
   const decrement = () => {
     if (countOrder > 0) {
       setCountOrder(--countOrder);
@@ -17,7 +18,7 @@ export function Stepper({countOrder, setCountOrder, ...rest }) {
   };
 
   return(
-    <Container>
+    <Container {...rest}>
         <FiMinus 
           size={24} 
           onClick={decrement}

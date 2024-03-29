@@ -10,11 +10,11 @@ import { Container } from './style';
 import { useState } from "react"
 
 export function SignIn(){
-  const [password, setPassword] = useState("")
-  const [email, setEmail] = useState("");
+  const {signIn} = useAuth();
   const navigate = useNavigate();
 
-  const {signIn} = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("")
 
   function handleSignIn(){
     signIn({email, password});

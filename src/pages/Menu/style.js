@@ -10,7 +10,6 @@ export const Container = styled.div`
 
   width: 100%;
   height: 100vh;
-  /* overflow: hidden; */
 
   header{
     display: flex;
@@ -36,6 +35,16 @@ export const Container = styled.div`
     padding: 28px 36px 14px 28px
   }
 
+  .card-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+
+    margin: 16px 0;
+  }
+
 `
 
 export const ButtonCloseMenu = styled.button`
@@ -50,4 +59,60 @@ export const ButtonCloseMenu = styled.button`
   padding: 4px 0;
 
   fill: white;
+`
+
+export const CardBox = styled.div`
+
+  &:hover{
+    cursor: pointer;
+  }
+
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  gap: 24px;
+  width: 100%;
+  height: 200px;
+
+  padding: 24px;
+
+  font-family: 'Poppins', sans-serif;
+
+  border-radius: 12px;
+  background-color: ${({theme}) => theme.COLORS.DARK_700};
+
+  .box-description{
+    width: 100%;
+    display: flex;
+    align-items: right;
+    justify-content: center;
+    flex-direction: column;
+
+    .dish-name{
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      color: ${({theme}) => theme.COLORS.CAKE_200};
+      margin-bottom: 4px;
+    }
+
+    .dish-description{
+      font-size: 14px;
+      font-weight: 200;
+    }
+
+    .dish-price{
+      font-size: 14px;
+      font-weight: 400;
+      color: ${({theme}) => theme.COLORS.CAKE_200};
+      width: 100%;
+      margin-top: 16px;
+      text-align: end;
+    }
+  }
+
+  .image-dish{
+    img{
+      width: 100px;
+    }
+  }
 `

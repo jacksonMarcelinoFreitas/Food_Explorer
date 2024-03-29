@@ -1,24 +1,19 @@
 import { styled } from "styled-components";
 import { device } from "../../screensizes/devices";
-import { Link } from "react-router-dom";
-
-export const EditLink = styled(Link)`
-  // Adicione estilos aqui, se necessário
-`;
-
 
 export const Container = styled.div`
-  height: 292px;
-
-  padding: 24px;
-
   position: relative;
+
+  height: 292px;
+  padding: 24px;
 
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 12px;
+
+  border-radius: 16px;
 
   background-color: ${({theme}) => theme.COLORS.DARK_900};
 
@@ -49,7 +44,6 @@ export const Container = styled.div`
 
   .dish-like, .edit-icon{
     position: absolute;
-    /* color: red; */
     right: 16px;
     top: 16px;
 
@@ -94,8 +88,6 @@ export const Container = styled.div`
 
   @media ${device.desktopSmall} {
     height: 462px;
-    /* width: 304px; */
-
     padding: 32px;
 
     .hidden{

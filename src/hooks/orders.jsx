@@ -7,13 +7,12 @@ const OrderContext = createContext({})
 
 function OrderProvider({children}){
   const [orders, setOrders] = useState(0);
-  const [dishOrders, setDishOrders] = useState({}); //preço e pedidos
+  const [dishOrders, setDishOrders] = useState({});
 
   //só busca pelos pedidos
   async function fetchOrderDishes(){
     try {
       const response = await api.get(`/dish/commonDishesOrders/orders/dishes`);
-      //pratos e preco total
       const { orderDishes, totalPrice } = response.data;
 
       setDishOrders({orderDishes, totalPrice});
@@ -28,8 +27,6 @@ function OrderProvider({children}){
     try {
       const response = await api.put(`/dish/commonDishesOrders/orders`, { isLiked, amountOrder, dish_id });
       const { orderDishes, amountOrders  } = response.data;
-
-      console.log(orderDishes)
 
       localStorage.setItem("@food_explorer:orders", JSON.stringify({ amountOrders }))
 
@@ -81,7 +78,6 @@ function OrderProvider({children}){
   )
 
 }
-
 
 function useUpdateOrder(){
   const context = useContext(OrderContext);

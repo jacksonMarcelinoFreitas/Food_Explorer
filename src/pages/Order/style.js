@@ -2,36 +2,14 @@ import styled from 'styled-components';
 import { device } from '../../screensizes/devices';
 
 export const Container = styled.div`
-  /* overflow-y: hidden; */
-  footer{
-    position: absolute;
-    bottom: 0;
-
-  }
-
-  .not-have-order{
+  .wrapper{
     display: flex;
     align-items: center;
-    justify-content: center;
-    height: 80vh;
     flex-direction: column;
-    gap: 24px;
-
-    p{
-      font-family: 'Poppins', sans-serif;
-      font-weight: 300;
-      font-size: 24px;
-      color: ${({theme}) => theme.COLORS.CAKE_200};
-    }
-  }
-
-  .wrapper{
-    padding: 24px 196px;
-
-    display: flex;
-    align-items: start;
     justify-content: space-evenly;
-    gap: 74px;
+    gap: 32px;
+
+    padding: 24px 32px 64px 32px;
 
     h1{
       font-family: 'Poppins', sans-serif;
@@ -40,26 +18,23 @@ export const Container = styled.div`
 
       color: ${({theme}) => theme.COLORS.LIGHT_300};
 
-      margin-bottom: 32px;
+      margin-bottom: 24px;
+      padding-left: 12px;
     }
 
   }
 
   .box-orders{
-    .cards{
-      padding-right: 32px;
-      height: 50vh;
-      overflow-y: auto;
+    width: 100%;
 
-      &::-webkit-scrollbar-track {
-        background: transparent;
-      }
-      &::-webkit-scrollbar {
-          width: 6px;
-      }
-      &::-webkit-scrollbar-thumb {
-        ${({theme}) => theme.COLORS.LIGHT_700};
-      }
+    .cards{
+      width: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 12px;
     }
 
     p.amount{
@@ -68,83 +43,161 @@ export const Container = styled.div`
       font-family: 'Poppins', sans-serif;
       font-size: 20px;
       font-weight: 400;
+      text-align: right;
+      padding-right: 24px;
 
-      color: ${({theme}) => theme.COLORS.LIGHT_300};
+      color: ${({theme}) => theme.COLORS.CAKE_200};
     }
   }
 
-  
-  
-  .box-square{
+  .box-wrapper,
+  .box-square,
+  .box-method {
     display: flex;
-    align-items: center;
-    justify-content: baseline;
+    align-items: start;
+    justify-content: center;
     flex-direction: column;
 
-    width: 530px;
-
-    border:  2px solid  ${({theme}) => theme.COLORS.LIGHT_700};
-    border-radius: 8px;
-
-    overflow: hidden;
-  }
-
-  .box-method{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
     width: 100%;
 
-    img, form{
-      width: 250px;
-      padding: 56px 0;
-    }
-
-    form{
-      width: 70%;
-      display: flex;
+    .box-square{
       align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 36px;
+  
+      border:  2px solid  ${({theme}) => theme.COLORS.LIGHT_700};
+      border-radius: 8px;
 
-      .field, .field:nth-child(2){
+      .box-button{
         width: 100%;
         display: flex;
+        grid-area: buttons;
+
+        border-bottom: 2px solid ${({theme}) => theme.COLORS.LIGHT_700};
+
+        button:first-child{
+          border-right: 2px solid ${({theme}) => theme.COLORS.LIGHT_700}
+        }
+      }
+    }
+
+    .box-method{
+      align-items: center;
+      padding: 32px;
+        
+      img, form{
+        height: 300px;
+      }
+  
+      form{
+        display: flex;
+        align-items: center;
         justify-content: center;
         flex-direction: column;
-        gap: 8px;
-      }
-
-      .field:nth-child(2){
-        flex-direction: row;
-        gap: 16px;
-
-        > div{
+        gap: 36px;
+  
+        .field, .field:nth-child(2){
+          width: 100%;
           display: flex;
+          justify-content: center;
           flex-direction: column;
           gap: 8px;
         }
-        
+  
+        .field:nth-child(2){
+          flex-direction: row;
+          gap: 16px;
+  
+          > div{
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+          }
+          
+        }
+  
+      }
+    }
+  }
+
+  .not-have-order{
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 24px;
+    padding: 32px;
+
+    img{
+      max-width:400px;
+      width: 70%;
+      opacity: .4;      
+    }
+
+    p{
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+      font-size: 24px;
+      line-height: 28px;
+      color: ${({theme}) => theme.COLORS.CAKE_200};
+      text-align: center;
+    }
+  }
+
+
+  @media ${device.tablet} {
+    .wrapper{
+      flex-direction: row;
+      align-items: start;
+      gap: 64px;
+    }
+
+    .box-orders{
+      width: 60%;
+
+      .cards-scroll{
+        padding: 12px 0;
+        width: 100%;
+        height: 50vh;
+        overflow: scroll;
+
+        &::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        &::-webkit-scrollbar {
+          width: 6px;
+        }
+        &::-webkit-scrollbar-thumb {
+          ${({theme}) => theme.COLORS.LIGHT_700};
+        }
+        &::-webkit-scrollbar-corner {
+          background: transparent;
+        }
       }
 
+      .cards{
+        padding-right: 12px;        
+      }
+
+      p.amount{
+        margin-top: 8px;
+      }
+    }
+
+    .box-wrapper{
+      width: 40%;
+    }
+
+    .box-method{
+      padding: 32px;
+      width: 100%;
+      height: 50vh;
+        
+      img, form{
+        width: 90%;
+      }
     }
   }
 
-  
-
-  .box-button{
-    width: 100%;
-    display: flex;
-    grid-area: buttons;
-
-    border-bottom: 2px solid ${({theme}) => theme.COLORS.LIGHT_700};
-
-    button:first-child{
-      border-right: 2px solid ${({theme}) => theme.COLORS.LIGHT_700}
-    }
-  }
   `
 
   export const ButtonPayment = styled.button`
@@ -163,6 +216,7 @@ export const Container = styled.div`
 
     &.selected{
       background-color: ${({theme}) => theme.COLORS.DARK_900};
+      color:  ${({theme}) => theme.COLORS.CAKE_200};
     }
 
     p{

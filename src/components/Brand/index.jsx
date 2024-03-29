@@ -1,6 +1,6 @@
-import { Container } from './style';
-import hexagon from '../../assets/poligon.svg';
 import { useNavigate } from "react-router-dom";
+import hexagon from '../../assets/poligon.svg';
+import { Container } from './style';
 
 
 export function Brand({...rest}){

@@ -1,13 +1,12 @@
 import { PiHeartStraightFill, PiPencilSimple } from 'react-icons/pi';
+import { useUpdateOrder } from '../../hooks/orders';
 import { Stepper } from '../../components/Stepper';
 import { Button } from '../../components/Button';
 import { useNavigate } from "react-router-dom";
-import { useState } from 'react';
 import { FiHeart } from 'react-icons/fi';
 import { toast } from 'react-toastify';
 import { Container} from './style';
-import { useUpdateOrder } from '../../hooks/orders';
-
+import { useState } from 'react';
 
 export function Card({ icon: Icon, image, name, price, isAdmin, description, isLiked, orders, id, ...rest }) {
 
@@ -20,7 +19,7 @@ export function Card({ icon: Icon, image, name, price, isAdmin, description, isL
 
       if(origin == 0){
         updateOrders({ amountOrder: countOrder, dish_id: id })
-        toast.success(`Adicionado com sucesso!`);
+        toast.success(`Pedido atualizado!`);
       } else{
         updateOrders({ isLiked: !like, dish_id: id })
         setLike(!like); 

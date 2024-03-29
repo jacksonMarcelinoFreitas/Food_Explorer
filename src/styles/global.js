@@ -29,8 +29,6 @@ export default createGlobalStyle`
   body{
     color: ${({theme}) => theme.COLORS.LIGHT_100};
     -webkit-font-smoothing: antialiased;
-
-
   }
 
   body, button, input, textarea, a, p{
@@ -51,5 +49,4 @@ export default createGlobalStyle`
   button:hover , a:hover{
     filter: brightness(0.9);
   }
-
 `;

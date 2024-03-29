@@ -3,17 +3,15 @@ import { device } from "../../screensizes/devices";
 
 export const Container = styled.div`
   width: 100%;
-  margin-bottom: 24px;
-  margin-right: 10vw;
-
+  margin-bottom: 46px;
+  
   grid-area: areaCard;
-  /* overflow-x: hidden; */
-
+  
   .title-area{
     font-family: 'Poppins', sans-serif;
     font-size: 18px;
     font-weight: 500;
-
+    
     margin-bottom: 24px;
   }
 
@@ -23,9 +21,6 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-
-    gap: 16px;
-
   }
 
   @media ${device.tablet}{

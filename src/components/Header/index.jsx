@@ -14,7 +14,7 @@ import { LuLogOut } from 'react-icons/lu';
 import { Container } from './style';
 
 
-export function Header({isAdmin, ...rest}){
+export function Header({isAdmin, setSearch, ...rest}){
   const { totalAmountOrders } = useUpdateOrder();
   const { signOut } = useAuth();
   
@@ -54,6 +54,7 @@ export function Header({isAdmin, ...rest}){
           icon={IoSearchOutline}
           className='input-search desktop'
           placeholder='Busque por pratos ou ingredientes'
+          onChange={(e) => setSearch(e.target.value)}
         />
 
       </div>

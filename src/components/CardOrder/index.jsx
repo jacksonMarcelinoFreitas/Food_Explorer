@@ -1,6 +1,6 @@
-import { Button } from '../Button';
-import { Container } from './style';
 import { api } from '../../services/api';
+import { Container } from './style';
+import { Button } from '../Button';
 
 export function CardOrder({className, data, deleteOrder, ...rest}){
   const handleDeleteOrder = () => {
