@@ -49,12 +49,13 @@ function OrderProvider({children}){
 
   useEffect(() => {
     const dataString = localStorage.getItem("@food_explorer:orders");
-    const {amountOrders} = JSON.parse(dataString);
-    
-    if(amountOrders !== undefined){  
-      setOrders(amountOrders);
-    }else{
-      setOrders(0);
+    const parsedData = JSON.parse(dataString);
+  
+    if(parsedData && parsedData.amountOrders !== undefined){  
+      setOrders(parsedData);
+    } else {
+      // Define um valor padrão para amountOrders se não houver dados salvos
+      setOrders({ amountOrders: 0, orderDishes: [] });
     }
   }, [])
 
