@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 const OrderContext = createContext({})
 
 function OrderProvider({children}){
-  const [orders, setOrders] = useState({});
+  const [orders, setOrders] = useState(0);
   const [dishOrders, setDishOrders] = useState({});
 
   //só busca pelos pedidos
