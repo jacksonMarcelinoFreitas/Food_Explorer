@@ -49,7 +49,7 @@ function OrderProvider({children}){
 
   useEffect(() => {
     const dataString = localStorage.getItem("@food_explorer:orders");
-    const amountOrders = JSON.parse(dataString);
+    const {amountOrders} = JSON.parse(dataString);
     
     if(amountOrders !== undefined){  
       setOrders(amountOrders);
