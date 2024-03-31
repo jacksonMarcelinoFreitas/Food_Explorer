@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 const OrderContext = createContext({})
 
 function OrderProvider({children}){
-  const [orders, setOrders] = useState(0);
+  const [orders, setOrders] = useState({});
   const [dishOrders, setDishOrders] = useState({});
 
   //só busca pelos pedidos
@@ -69,7 +69,7 @@ function OrderProvider({children}){
     <OrderContext.Provider value={{
         updateOrders,
         fetchOrderDishes,
-        totalAmountOrders: orders.amountOrders,
+        totalAmountOrders: orders.amountOrders ? orders.amountOrders : 0,
         orders: dishOrders.orderDishes,
         totalPrice: dishOrders.totalPrice
     }}>
