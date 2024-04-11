@@ -47,8 +47,6 @@ export function ViewDish(){
             ...response.data.dish,
             image: `${api.defaults.baseURL}/files/${response.data.dish.image}`
           }
-
-          console.log(dish)
     
           setDish(dish); 
           setCountOrder(dish.orders)
@@ -63,7 +61,6 @@ export function ViewDish(){
     <Container>
 
       <Header 
-        valueOrder={0} 
         isAdmin={isAdmin}
       />
 

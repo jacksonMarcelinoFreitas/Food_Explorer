@@ -119,13 +119,13 @@ export const Container = styled.div`
   }
 
   .not-have-order{
-    height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     gap: 24px;
     padding: 32px;
+    height: calc(100vh - 114px - 76px);
 
     img{
       max-width:400px;
@@ -136,7 +136,7 @@ export const Container = styled.div`
     p{
       font-family: 'Poppins', sans-serif;
       font-weight: 300;
-      font-size: 24px;
+      font-size: clamp(16px, 5vw, 24px);
       line-height: 28px;
       color: ${({theme}) => theme.COLORS.CAKE_200};
       text-align: center;
@@ -180,6 +180,8 @@ export const Container = styled.div`
 
       p.amount{
         margin-top: 8px;
+        padding-left: 24px;
+        text-align: left;
       }
     }
 

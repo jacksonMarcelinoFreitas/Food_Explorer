@@ -14,7 +14,7 @@ export const Container = styled.footer`
 
   background-color: ${({theme}) => theme.COLORS.DARK_600};
 
-  font-size: 12px;
+  font-size: clamp(10px, 2vw, 12px);
   font-family: 'Poppins', sans-serif;
   font-weight: 100;
 
@@ -24,13 +24,13 @@ export const Container = styled.footer`
     width: fit-content;
 
     > img{
-      width: 22px;
+      width: clamp(12px, 2vw, 22px);
       filter: hue-rotate(20deg);
       filter: saturate(10%);
     }
 
     > p {
-      font-size: 16px;
+      font-size: clamp(12px, 2vw, 22px);
       color: ${({theme}) => theme.COLORS.LIGHT_700};
     }
   }

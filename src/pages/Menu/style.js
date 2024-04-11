@@ -90,18 +90,19 @@ export const CardBox = styled.div`
 
     .dish-name{
       font-family: 'Poppins', sans-serif;
+      font-size: clamp(16px, 2vw, 20px);
       font-weight: 700;
       color: ${({theme}) => theme.COLORS.CAKE_200};
       margin-bottom: 4px;
     }
 
     .dish-description{
-      font-size: 14px;
+      font-size: clamp(12px, 2vw, 14px);
       font-weight: 200;
     }
 
     .dish-price{
-      font-size: 14px;
+      font-size: clamp(12px, 2vw, 14px);
       font-weight: 400;
       color: ${({theme}) => theme.COLORS.CAKE_200};
       width: 100%;
@@ -112,7 +113,7 @@ export const CardBox = styled.div`
 
   .image-dish{
     img{
-      width: 100px;
+      width: clamp(70px, 20vw, 100px);
     }
   }
 `

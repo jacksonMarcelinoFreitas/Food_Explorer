@@ -10,18 +10,25 @@ export const Container = styled.div`
     flex-direction: column;
     height: 80vh;
     gap: 64px;
-  }
 
-  img{
-    width: 40%;
-  }
+    img{
+      width: clamp(200px, 70vw, 500px);
+      opacity: .6;
+      filter: grayscale(.3);
+    }
 
-  button{
-    width: 200px;
+    button{
+      width: clamp(100px, 50vw, 200px);
+
+      p{
+        font-size: clamp(12px, 5vw, 16px);
+      }
+    }
   }
 
   footer{
     position: fixed;
     bottom: 0;
   }
+
 `

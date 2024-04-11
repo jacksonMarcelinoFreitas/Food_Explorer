@@ -18,7 +18,7 @@ export const Container = styled.button`
 
   > p {
     font-family: 'Poppins', sans-serif;
-    font-size: 24px;
+    font-size: clamp(20px, 2vw, 24px) !important;
     font-style: normal;
     font-weight: 300;
     line-height: 140%; /* 33.6px */

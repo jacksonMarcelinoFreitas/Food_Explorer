@@ -41,13 +41,14 @@ export const Container = styled.div`
 
     > img {
       /* width: fit-content; */
-      width: clamp(100px, 100%, 300px);
+      width: clamp(100px, 60vw, 300px);
     }
   }
 
   .box-intern-ingredients{
     gap: 24px;
     text-align: center;
+    width: 100%;
 
     h1, p {
       font-family: Poppins;
@@ -56,12 +57,12 @@ export const Container = styled.div`
     }
 
     > h1 {
-      font-size: 28px;
+      font-size: clamp(22px, 2vw, 28px);
       font-weight: 500;
     }
 
     > p {
-      font-size: 16px;
+      font-size: clamp(14px, 2vw, 16px);
       font-weight: 100;
     }
   }
@@ -128,7 +129,7 @@ export const Container = styled.div`
       }
 
       > p {
-        font-size: clamp(16px, 2vw, 24px);;
+        font-size: clamp(12px, 2vw, 16px);
         font-weight: 300;
         text-align: left;
       }
@@ -136,7 +137,6 @@ export const Container = styled.div`
 
     .ingredients{
       justify-content: left;
-      display: flex;
     }
 
     .dish-select-box{

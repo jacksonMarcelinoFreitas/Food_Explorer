@@ -2,6 +2,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
+
+  .Toastify__toast--success, 
+  .Toastify__toast--info, 
+  .Toastify__toast--error, 
+  .Toastify__toast--warning {
+    background: ${({theme}) => theme.COLORS.TOMATO_100};
+    color: white;
+  }
+
   *{
     margin: 0;
     padding: 0;

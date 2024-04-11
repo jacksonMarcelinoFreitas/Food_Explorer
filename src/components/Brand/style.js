@@ -9,12 +9,12 @@ export const Container = styled.div`
   cursor: pointer;
 
   img{
-    width: 42px;
+    width: clamp(36px, 5vw, 42px);
   }
 
   p{
     font-family: 'Roboto', sans-serif;
-    font-size: 36px;
+    font-size: clamp(32px, 5vw, 36px);
     font-weight: 700;
     white-space: nowrap;
   }

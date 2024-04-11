@@ -1,5 +1,6 @@
 import { Container } from './style';
 import { FiMinus, FiPlus } from 'react-icons/fi';
+import { toast } from 'react-toastify';
 
 export function Stepper({countOrder, setCountOrder, ...rest }) {
 
@@ -9,7 +10,7 @@ export function Stepper({countOrder, setCountOrder, ...rest }) {
     if (countOrder > 0) {
       setCountOrder(--countOrder);
     }else{
-      alert('Faz isso não ... 🫤🤦‍♂️')
+      toast.warn('Tá querendo quebrar é 😅')
     }
   };
 

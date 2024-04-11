@@ -6,7 +6,7 @@ export const Container = styled.div`
   border-radius: 6px;
 
   font-family: 'Poppins', sans-serif;
-  font-size: 14px;
+  font-size: clamp(12px, 2vw, 14px);
   font-weight: 500;
   text-align: center;
 

@@ -1,22 +1,24 @@
 import bannerImageDesktop from '../../assets/bannerImageDesktop.png';
+import { NoHaveDish } from '../../components/NoHaveDish'
 import bannerImage from '../../assets/bannerImage.png';
 import { AreaCard } from '../../components/AreaCard';
 import { Carousel } from '../../components/Carousel';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
+import { Loader } from '../../components/Loader'
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../hooks/auth';
 import { api } from '../../services/api';
 import { Container } from './style';
-import { NoHaveDish } from '../../components/NoHaveDish'
 
 export function Home(){
     const { user } = useAuth();
-
+    
     let isAdmin
     user.isAdmin == 1 ? isAdmin = true : isAdmin = false ;  
     
     const [search, setSearch] = useState("");
+    const [loading, setLoading] = useState(false);
     const [dataMeals, setDataMeals] = useState([]);
     const [dataDrinks, setDataDrinks] = useState([]);
     const [dataDesserts, setDataDesserts] = useState([]);
@@ -24,6 +26,7 @@ export function Home(){
     //buscar prato por ingredient ou nome no campo de pesquisa
     useEffect (()=> {
         async function fetchDishes(){
+            setLoading(true);
             const response = await api.get(`/dishes?name=${search}`);
             const data = response.data.map((dish) => ({
                 ...dish,
@@ -43,6 +46,7 @@ export function Home(){
                         acc.desserts.push(item);
                         break;
                     case 3:
+                    case 4:
                         acc.drinks.push(item);
                         break;
                     default:
@@ -50,13 +54,12 @@ export function Home(){
                 }
                 return acc;
             }, { meals: [], desserts: [], drinks: []}); 
-            
-            console.log(data)
-            console.log(categorizedData);
-        
+                    
             setDataMeals(categorizedData.meals);
             setDataDesserts(categorizedData.desserts);
             setDataDrinks(categorizedData.drinks);
+
+            setLoading(false);
         }
 
         fetchDishes();
@@ -69,36 +72,38 @@ export function Home(){
                 setSearch={setSearch}
             />
 
-            <div className="wrapper">
-                <div className="banner-container">
-                    <div className='banner'>
-                        <picture>
-                            <source media="(min-width: 1024px)" srcSet={bannerImageDesktop}/>
-                            <source media="(max-width: 599px)" srcSet={bannerImage}/>
-                            <img src={bannerImage} alt="Imagem do banner"/>
-                        </picture>
-                        <div className='text-banner'>
-                            <h1>Sabores inigualáveis</h1>
-                            <p>Sinta o cuidado do preparo com ingredientes selecionados.</p>
+            {loading ?                   
+                <Loader />
+            :
+            <>
+                <div className="wrapper">
+                    <div className="banner-container">
+                        <div className='banner'>
+                            <picture>
+                                <source media="(min-width: 1024px)" srcSet={bannerImageDesktop}/>
+                                <source media="(max-width: 599px)" srcSet={bannerImage}/>
+                                <img src={bannerImage} alt="Imagem do banner"/>
+                            </picture>
+                            <div className='text-banner'>
+                                <h1>Sabores inigualáveis</h1>
+                                <p>Sinta o cuidado do preparo com ingredientes selecionados.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <AreaCard title='Refeições'>
-                {dataMeals&& 
-                    dataMeals.length > 0 ?
-                    <Carousel
-                        items={dataMeals}
-                        isAdmin={isAdmin}
-                    />
-                    :
-                    <NoHaveDish/>
-                }
-                </AreaCard>
+                    
+                    <AreaCard title='Refeições'>
+                    {dataMeals&& dataMeals.length > 0 ?
+                        <Carousel
+                            items={dataMeals}
+                            isAdmin={isAdmin}
+                        />
+                        :
+                        <NoHaveDish/>
+                    }
+                    </AreaCard>
 
-                <AreaCard title='Bebidas'>
-                    {dataDrinks&&
-                        dataDrinks.length > 0 ?
+                    <AreaCard title='Bebidas'>
+                    {dataDrinks&& dataDrinks.length > 0 ?
                         <Carousel
                             items={dataDrinks}
                             isAdmin={isAdmin}
@@ -106,11 +111,10 @@ export function Home(){
                         :
                         <NoHaveDish/>
                     }
-                </AreaCard>
+                    </AreaCard>
 
-                <AreaCard title='Sobremesas'>
-                    {dataDesserts&& 
-                        dataDesserts.length > 0 ?
+                    <AreaCard title='Sobremesas'>
+                    {dataDesserts&& dataDesserts.length > 0 ?
                         <Carousel
                             items={dataDesserts}
                             isAdmin={isAdmin}
@@ -118,9 +122,11 @@ export function Home(){
                         :
                         <NoHaveDish/>          
                     }
-                </AreaCard> 
-            </div>
-        <Footer />
+                    </AreaCard> 
+                </div>
+                <Footer />
+            </>
+        }
         </Container>
     )
 }

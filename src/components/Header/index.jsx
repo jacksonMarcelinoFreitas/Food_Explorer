@@ -7,16 +7,13 @@ import { Input } from '../../components/Input';
 import { useNavigate } from 'react-router-dom';
 import { Order } from '../../components/Order';
 import { HiMiniBars3 } from 'react-icons/hi2';
-// import { useState, useEffect } from 'react';
 import { useAuth } from '../../hooks/auth';
 import { LuLogOut } from 'react-icons/lu';
-// import { api } from '../../services/api';
 import { Container } from './style';
 
-
 export function Header({isAdmin, setSearch, ...rest}){
-  const { totalAmountOrders } = useUpdateOrder();
   const { signOut } = useAuth();
+  const { totalAmountOrders } = useUpdateOrder();  
   
   const navigate = useNavigate();
 
@@ -64,6 +61,7 @@ export function Header({isAdmin, setSearch, ...rest}){
         icon={isAdmin ? null : PiReceiptLight}
         title={isAdmin ? 'Novo prato' : `Pedidos (${totalAmountOrders})`}
         onClick={navigateFor}
+        // loading={loading}
       />
 
       <LuLogOut 

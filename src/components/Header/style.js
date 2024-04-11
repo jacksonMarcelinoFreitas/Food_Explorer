@@ -64,9 +64,9 @@ export const Container = styled.header`
     display: none;
   }
 
-
   .iconBrand{
     width: 24px;
+    width: clamp(20px, 2vw, 24px);
   }
 
   .iconOrder:hover, 
@@ -76,6 +76,7 @@ export const Container = styled.header`
 
   .textBrand{
     font-size: 21px;
+    font-size: clamp(18px, 2vw, 21px);
   }
 
   @media ${device.desktopSmall}{

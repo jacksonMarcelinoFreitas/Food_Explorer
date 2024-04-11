@@ -13,14 +13,12 @@ import { useEffect, useState } from 'react';
 import { PiReceipt } from "react-icons/pi";
 import { useAuth } from '../../hooks/auth';
 import { SiPix } from "react-icons/si";
+import { toast } from 'react-toastify';
 
 export function Order(){
     const { user } = useAuth();
     const { updateOrders, fetchOrderDishes, totalPrice, orders } = useUpdateOrder();
     const [selectedTab, setSelectedTab] = useState('pix');
-
-    console.log('Orders:', orders)
-    console.log('TotalPrice:', totalPrice)
 
     let isAdmin
     user.isAdmin == 1 ? isAdmin = true : isAdmin = false ; 
@@ -45,67 +43,67 @@ export function Order(){
     return(
         <Container>
             <Header isAdmin={isAdmin} />
-            {orders && orders.length > 0 ? (
-                <div className="wrapper">
-                    <div className='box-orders'>
-                        <h1>Meu pedido</h1>
-                        <div className="cards-scroll">
-                            <div className="cards">
-                                {orders.map(dish => (
-                                    <CardOrder key={`${dish.id}`} data={dish} deleteOrder={deleteOrder} />
-                                ))}
+                {orders && orders.length > 0 ? (
+                    <div className="wrapper">
+                        <div className='box-orders'>
+                            <h1>Meu pedido</h1>
+                            <div className="cards-scroll">
+                                <div className="cards">
+                                    {orders.map(dish => (
+                                        <CardOrder key={`${dish.id}`} data={dish} deleteOrder={deleteOrder} />
+                                    ))}
+                                </div>
+                            </div>
+                            {totalPrice && 
+                                <p className="amount">Total: R${totalPrice.toLocaleString('pt-br', {minimumFractionDigits: 2})}</p>
+                            }
+                        </div>
+                        <div className="box-wrapper">
+                            <h1>Pagamento</h1>
+                            <div className="box-square">
+                                <div className="box-button">
+                                    <ButtonPayment className={selectedTab === 'pix' ? 'selected' : ''} onClick={() => handleTabClick('pix')}>
+                                        <SiPix size={24} />
+                                        <p>Pix</p>
+                                    </ButtonPayment>
+                                    <ButtonPayment className={selectedTab === 'card' ? 'selected' : ''} onClick={() => handleTabClick('card')}>
+                                        <BsFillCreditCard2BackFill size={24} />
+                                        <p>Crédito</p>
+                                    </ButtonPayment>
+                                </div>
+                                <div className="box-method">
+                                    {selectedTab === 'pix' && (
+                                        <img src={qr_code} alt="qr code payment" />
+                                    )}
+                                    {selectedTab === 'card' && (
+                                        <form action="">
+                                            <div className="field">
+                                                <Label title='Número do cartão' />
+                                                <Input placeholder='0000 0000 0000 0000' />
+                                            </div>
+                                            <div className="field">
+                                                <div>
+                                                    <Label title='Validade' />
+                                                    <Input placeholder='04/25' />
+                                                </div>
+                                                <div>
+                                                    <Label title='CVC' />
+                                                    <Input placeholder='000' />
+                                                </div>
+                                            </div>
+                                            <Button icon={PiReceipt} title='Finalizar pagamento'onClick={()=>{toast.warn('Funcionalidade não implementada!')}} />
+                                        </form>
+                                    )}
+                                </div>
                             </div>
                         </div>
-                        {totalPrice && 
-                            <p className="amount">Total: R${totalPrice.toLocaleString('pt-br', {minimumFractionDigits: 2})}</p>
-                        }
                     </div>
-                    <div className="box-wrapper">
-                        <h1>Pagamento</h1>
-                        <div className="box-square">
-                            <div className="box-button">
-                                <ButtonPayment className={selectedTab === 'pix' ? 'selected' : ''} onClick={() => handleTabClick('pix')}>
-                                    <SiPix size={24} />
-                                    <p>Pix</p>
-                                </ButtonPayment>
-                                <ButtonPayment className={selectedTab === 'card' ? 'selected' : ''} onClick={() => handleTabClick('card')}>
-                                    <BsFillCreditCard2BackFill size={24} />
-                                    <p>Crédito</p>
-                                </ButtonPayment>
-                            </div>
-                            <div className="box-method">
-                                {selectedTab === 'pix' && (
-                                    <img src={qr_code} alt="qr code payment" />
-                                )}
-                                {selectedTab === 'card' && (
-                                    <form action="">
-                                        <div className="field">
-                                            <Label title='Número do cartão' />
-                                            <Input placeholder='0000 0000 0000 0000' />
-                                        </div>
-                                        <div className="field">
-                                            <div>
-                                                <Label title='Validade' />
-                                                <Input placeholder='04/25' />
-                                            </div>
-                                            <div>
-                                                <Label title='CVC' />
-                                                <Input placeholder='000' />
-                                            </div>
-                                        </div>
-                                        <Button icon={PiReceipt} title='Finalizar pagamento' />
-                                    </form>
-                                )}
-                            </div>
-                        </div>
+                ) : (
+                    <div className="not-have-order">
+                        <img src={not_have_order} alt="icon with dish" />
+                        <p>Você ainda não<br/>tem pedidos!</p>
                     </div>
-                </div>
-            ) : (
-                <div className="not-have-order">
-                    <img src={not_have_order} alt="icon with dish" />
-                    <p>Você ainda não<br/>tem pedidos!</p>
-                </div>
-            )}
+                )}
             <Footer />
         </Container>
     )
